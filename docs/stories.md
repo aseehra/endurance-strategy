@@ -17,7 +17,7 @@
 - As a user, I want to click on a race entry so that I can see the details of
   their race strategy
 
-##### Given that a user has clicked on a race entry
+###### Given that a user has clicked on a race entry
 - As a user, I want to see the stints each driver has completed so that I can
   see if a particular driver is the weakest link
 - As a user, I want to see the pit stop times (per stint) so that I can
@@ -52,13 +52,18 @@
 
 ## Post-capstone extensions
 
-#### Flagging information _Blocked: Current race replay data does not include
-complete flagging data_
+#### Flagging information
+
+_Blocked: Current race replay data does not include complete flagging data_
+
 - As a user, I want to see the periods where the race was run under yellow- or
   red-flags so that I can see at a glance if this was a "messy" race
 - As a user, I want to see which stints and pit stops occurred under yellow
   flags, so I can see if race engineers made smart calls
 
-#### Connect to a live-timing server _Blocked: No new races until January_
+#### Connect to a live-timing server
+
+_Blocked: No new races until January_
+
 - As an owner, I want the backend to get data from a live-timing server so that
   users can see the strategy of a live race.
