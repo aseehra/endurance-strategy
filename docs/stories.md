@@ -2,10 +2,6 @@
 
 ## Minimum viable product
 
-#### Upload race data
-- As a superuser, I want to upload a "race replay" file so that I can build the
-  strategy information for a completed race
-
 #### Display & filter race entries
 - As a user, I want to see a list of all race entries in their final position
 - As a user, I want to be able to search for a particular entry so that I can
@@ -18,23 +14,48 @@
   their race strategy
 
 ###### Given that a user has clicked on a race entry
-- As a user, I want to see the stints each driver has completed so that I can
-  see if a particular driver is the weakest link
+- As a user, I want to see all the drivers of a particular entry to see see if a
+  particular driver is the weakest link
+  - Average lap time per driver
 - As a user, I want to see the pit stop times (per stint) so that I can
   determine if a car was sidelined in the garage at any point
-- As a user, I want to be able to compare stints with another entry so that I
-  can see where time was won/lost
 
 ## Extensions
 
+#### Compare race statistics
+
+- As a user, I want to be able to compare stints with another entry so that I
+  can see where time was won/lost
+
+#### Improved statistics
+- As a user, I want to see the stints each driver has completed so that I can
+  see if a particular driver is better at a particular point in the race
+  - Average lap time per stint per driver
+  - Fastest lap per driver per stint
+
+#### Flagging information
+
+- As a user, I want to see how many red- and yellow- flag periods there were
+  (and their length) so that I can see at a glance if this was a "messy" race
+- As a user, I want to see which stints and pit stops occurred under yellow
+  flags, so I can see if race engineers made smart calls
+
 #### Favorites
 - As a user, I want to be able to favorite particular entries so that I can more
-  easily access their details
+  easily find them in comparison dialogs
+    - Local/Session Storage? IndexedDB?
+
+## Post-capstone extensions
 
 #### Lap charts
 - As a user, I want to see the entry's position over time so that I can
   determine the lap on a significant event concerning this entry occurred
   - Displayed as a chart (D3?)
+
+#### Upload new race data
+- As a superuser, I want to upload a "race replay" file so that I can build the
+  strategy information for a completed race
+  - Parse data from timing-data frames into pg database
 
 #### Replay of race data
 - As a super-user, I want to upload a "race replay" file and have the server
@@ -47,19 +68,10 @@
     - Poll via pressing "refresh button" or auto-refresh
 
 #### Caching
-- As an owner, I want the client to cache results so that my backend does not
-  fall over if users swap between entries/hit refresh often
-
-## Post-capstone extensions
-
-#### Flagging information
-
-_Blocked: Current race replay data does not include complete flagging data_
-
-- As a user, I want to see the periods where the race was run under yellow- or
-  red-flags so that I can see at a glance if this was a "messy" race
-- As a user, I want to see which stints and pit stops occurred under yellow
-  flags, so I can see if race engineers made smart calls
+- As an owner, I want the client to cache results to improve performance when
+  switching between different views
+- As an owner, I want the server to cache responses so that it doesn't need to
+  hit the database as frequently
 
 #### Connect to a live-timing server
 
