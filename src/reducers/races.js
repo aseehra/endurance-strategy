@@ -5,7 +5,7 @@ import {
 } from '../actions/types';
 
 const defaultState = {
-  races: [],
+  races: {},
   loading: false,
   error: null,
 };
@@ -23,7 +23,10 @@ export default function reducer(state = defaultState, action) {
     const { races } = action;
     return {
       ...state,
-      races,
+      races: races.reduce((acc, race) => {
+        acc[race.id] = race;
+        return acc;
+      }, {}),
       loading: false,
       error: null,
     };

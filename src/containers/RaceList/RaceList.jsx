@@ -13,7 +13,10 @@ class RaceList extends React.Component {
 
   render() {
     const { races } = this.props;
-    const raceComponents = races.map(race => <Race {...race} key={race.id} />);
+    const raceComponents = Object.keys(races).map(id => (
+      <Race {...races[id]} key={id} />
+    ));
+
     return <div className="RaceList">{raceComponents}</div>;
   }
 }
