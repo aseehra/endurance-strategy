@@ -1,21 +1,34 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Race from '../../components/Race';
+import { fetchRaces as fetchRacesAction } from '../../actions/races';
+import { getRaces } from '../../reducers';
 
-export default class RaceList extends React.Component {
+class RaceList extends React.Component {
   componentDidMount() {
-    // TODO: fetch races
+    const { fetchRaces } = this.props;
+    fetchRaces();
   }
 
   render() {
-    const races = [
-      {
-        id: 20,
-        name: '24 Series',
-        location: 'Austin',
-      },
-    ];
+    const { races } = this.props;
     const raceComponents = races.map(race => <Race {...race} key={race.id} />);
     return <div className="RaceList">{raceComponents}</div>;
   }
 }
+
+export function mapStateToProps(state) {
+  return {
+    races: getRaces(state),
+  };
+}
+
+const mapDispatchToProps = {
+  fetchRaces: fetchRacesAction,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(RaceList);
