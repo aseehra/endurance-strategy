@@ -8,7 +8,7 @@ export default function RaceEntry(props) {
   const {
     carNumber,
     carClass,
-    driver,
+    driverName,
     manufacturer,
     positionInClass,
     positionOverall,
@@ -27,7 +27,7 @@ export default function RaceEntry(props) {
         <div className="RaceEntry__raceNumber RaceEntry__raceNumber--inClass">
           {positionInClass}
         </div>
-        <div className="RaceEntry__driverName">{driver}</div>
+        <div className="RaceEntry__driverName">{driverName}</div>
       </div>
     </Card>
   );
@@ -39,9 +39,5 @@ RaceEntry.propTypes = {
   manufacturer: PropTypes.string.isRequired,
   positionInClass: PropTypes.number.isRequired,
   positionOverall: PropTypes.number.isRequired,
-  driver: PropTypes.string,
-};
-
-RaceEntry.defaultProps = {
-  driver: 'Pipo Derani',
+  driverName: PropTypes.string.isRequired,
 };
