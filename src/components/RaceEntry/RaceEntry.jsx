@@ -42,7 +42,7 @@ export default function RaceEntry(props) {
 
 RaceEntry.propTypes = {
   id: PropTypes.number.isRequired,
-  raceId: PropTypes.number.isRequired,
+  raceId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   carNumber: PropTypes.number.isRequired,
   carClass: PropTypes.string.isRequired,
   manufacturer: PropTypes.string.isRequired,
