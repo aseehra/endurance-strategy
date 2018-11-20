@@ -17,24 +17,26 @@ export default function RaceEntry(props) {
     positionOverall,
   } = props;
   return (
-    <Link to={`/race/${raceId}/entry/${id}`} className="unadorned-link">
-      <Card>
-        <div className="RaceEntry">
-          <h2 className="RaceEntry__entryName">{manufacturer}</h2>
-          <div className="RaceEntry__carClass">{carClass}</div>
-          <div className="RaceEntry__raceNumber RaceEntry__raceNumber--entry">
-            {carNumber}
+    <div className="RaceEntry">
+      <Link to={`/race/${raceId}/entry/${id}`} className="unadorned-link">
+        <Card>
+          <div className="RaceEntry__contents">
+            <h2 className="RaceEntry__entryName">{manufacturer}</h2>
+            <div className="RaceEntry__carClass">{carClass}</div>
+            <div className="RaceEntry__raceNumber RaceEntry__raceNumber--entry">
+              {carNumber}
+            </div>
+            <div className="RaceEntry__raceNumber RaceEntry__raceNumber--overall">
+              {positionOverall}
+            </div>
+            <div className="RaceEntry__raceNumber RaceEntry__raceNumber--inClass">
+              {positionInClass}
+            </div>
+            <div className="RaceEntry__driverName">{driverName}</div>
           </div>
-          <div className="RaceEntry__raceNumber RaceEntry__raceNumber--overall">
-            {positionOverall}
-          </div>
-          <div className="RaceEntry__raceNumber RaceEntry__raceNumber--inClass">
-            {positionInClass}
-          </div>
-          <div className="RaceEntry__driverName">{driverName}</div>
-        </div>
-      </Card>
-    </Link>
+        </Card>
+      </Link>
+    </div>
   );
 }
 
