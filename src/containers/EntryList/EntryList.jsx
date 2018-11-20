@@ -7,7 +7,7 @@ import {
   fetchRaces as fetchRacesAction,
   fetchRaceEntries as fetchRaceEntriesAction,
 } from '../../actions/races';
-import { getRaces, getRaceEntries } from '../../reducers';
+import { getLoading, getRaces, getRaceEntries } from '../../reducers';
 
 class EntryList extends React.Component {
   componentDidMount() {
@@ -33,7 +33,12 @@ class EntryList extends React.Component {
   }
 
   render() {
-    const { entries } = this.props;
+    const { entries, isLoading } = this.props;
+    if (isLoading) {
+      // TODO: loading spinner
+      return null;
+    }
+
     const entryComponents = entries.map(entry => (
       <RaceEntry key={entry.id} {...entry} />
     ));
@@ -47,10 +52,10 @@ EntryList.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = state => ({
   entries: getRaceEntries(state),
   races: getRaces(state),
-  match: ownProps.match,
+  isLoading: getLoading(state),
 });
 
 const mapDispatchToProps = {

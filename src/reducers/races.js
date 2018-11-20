@@ -78,4 +78,5 @@ export default function reducer(state = defaultState, action) {
 export const selectors = {
   getRaces: state => state.races,
   getRaceEntries: state => state.entries,
+  getLoading: state => state.loading,
 };
