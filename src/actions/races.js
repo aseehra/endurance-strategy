@@ -50,10 +50,10 @@ const fetchRaceEntriesFailure = error => ({
   error,
 });
 
-export const fetchRaceEntries = uri => (dispatch) => {
+export const fetchRaceEntries = id => (dispatch) => {
   dispatch(fetchRaceEntriesStart());
 
-  fetch(`${API_BASE_URL}${uri}`)
+  fetch(`${API_BASE_URL}/api/races/${id}/entries`)
     .then(normalizeErrors)
     .then(res => res.json())
     .then(data => dispatch(fetchRaceEntriesSuccess(data)))

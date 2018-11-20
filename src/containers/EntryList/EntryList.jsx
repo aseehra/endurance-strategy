@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -7,26 +6,13 @@ import {
   fetchRaces as fetchRacesAction,
   fetchRaceEntries as fetchRaceEntriesAction,
 } from '../../actions/races';
-import { getLoading, getRaces, getRaceEntries } from '../../reducers';
+import { getEntriesLoading, getRaceEntries } from '../../reducers';
 
 class EntryList extends React.Component {
   componentDidMount() {
-    const { entries, fetchRaceEntries, race } = this.props;
-
-    if (!entries && race) {
-      const uri = race.links.entries;
-      fetchRaceEntries(uri);
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    const { entries, fetchRaceEntries, race } = this.props;
-
-    if (prevProps.race !== race) {
-      if (!entries) {
-        const uri = race.links.entries;
-        fetchRaceEntries(uri);
-      }
+    const { entries, fetchRaceEntries, raceId } = this.props;
+    if (!entries) {
+      fetchRaceEntries(raceId);
     }
   }
 
@@ -44,19 +30,13 @@ class EntryList extends React.Component {
   }
 }
 
-EntryList.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({ raceId: PropTypes.string }).isRequired,
-  }).isRequired,
-};
-
 const mapStateToProps = (state, ownProps) => {
   const { raceId } = ownProps.match.params;
 
   return {
+    raceId,
     entries: getRaceEntries(state)[raceId],
-    race: getRaces(state)[raceId],
-    isLoading: getLoading(state),
+    isLoading: getEntriesLoading(state),
   };
 };
 

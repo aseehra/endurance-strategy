@@ -10,7 +10,8 @@ import {
 const defaultState = {
   races: {},
   entries: {},
-  loading: false,
+  racesLoading: false,
+  entriesLoading: false,
   error: null,
 };
 
@@ -18,7 +19,7 @@ export default function reducer(state = defaultState, action) {
   if (action.type === FETCH_RACES) {
     return {
       ...state,
-      loading: true,
+      racesLoading: true,
       error: null,
     };
   }
@@ -31,7 +32,7 @@ export default function reducer(state = defaultState, action) {
         acc[race.id] = race;
         return acc;
       }, {}),
-      loading: false,
+      racesLoading: false,
       error: null,
     };
   }
@@ -40,7 +41,7 @@ export default function reducer(state = defaultState, action) {
     const { error } = action;
     return {
       ...state,
-      loading: false,
+      racesLoading: false,
       error,
     };
   }
@@ -48,7 +49,7 @@ export default function reducer(state = defaultState, action) {
   if (action.type === FETCH_RACE_ENTRIES) {
     return {
       ...state,
-      loading: true,
+      entriesLoading: true,
       error: null,
     };
   }
@@ -57,7 +58,7 @@ export default function reducer(state = defaultState, action) {
     const { error } = action;
     return {
       ...state,
-      loading: false,
+      entriesLoading: false,
       error,
     };
   }
@@ -66,7 +67,7 @@ export default function reducer(state = defaultState, action) {
     const { raceId, entries } = action;
     return {
       ...state,
-      loading: false,
+      entriesLoading: false,
       error: null,
       entries: {
         ...state.entries,
@@ -81,5 +82,6 @@ export default function reducer(state = defaultState, action) {
 export const selectors = {
   getRaces: state => state.races,
   getRaceEntries: state => state.entries,
-  getLoading: state => state.loading,
+  getRacesLoading: state => state.racesLoading,
+  getEntriesLoading: state => state.entriesLoading,
 };

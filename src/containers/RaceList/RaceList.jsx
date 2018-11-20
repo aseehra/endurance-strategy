@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Race from '../../components/Race';
-import { getLoading, getRaces } from '../../reducers';
+import { getRacesLoading, getRaces } from '../../reducers';
 
 function RaceList(props) {
   const { isLoading, races } = props;
@@ -17,7 +17,7 @@ function RaceList(props) {
 }
 
 RaceList.propTypes = {
-  races: PropTypes.arrayOf(
+  races: PropTypes.objectOf(
     PropTypes.shape({
       id: PropTypes.number,
       name: PropTypes.string,
@@ -30,7 +30,7 @@ RaceList.propTypes = {
 export function mapStateToProps(state) {
   return {
     races: getRaces(state),
-    isLoading: getLoading(state),
+    isLoading: getRacesLoading(state),
   };
 }
 
