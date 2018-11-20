@@ -1,0 +1,48 @@
+.RaceEntry {
+  display: grid;
+  grid:
+    'overall inClass entryName carClass entryNumber'
+    '. . driverName . .'
+    / 3rem 3rem auto 3rem 3rem;
+}
+
+.RaceEntry__entryName,
+.RaceEntry__driverName {
+  justify-self: center;
+  text-align: center;
+}
+
+.RaceEntry__entryName {
+  grid-area: entryName;
+}
+
+.RaceEntry__driverName {
+  grid-area: driverName;
+}
+
+.RaceEntry__carClass,
+.RaceEntry__raceNumber {
+  width: 100%;
+  text-align: center;
+  align-self: start;
+}
+
+.RaceEntry__raceNumber--entry {
+  grid-area: entryNumber;
+  background: #aaaaaa;
+}
+
+.RaceEntry__raceNumber--overall {
+  grid-area: overall;
+  background: #aaaaaa;
+}
+
+.RaceEntry__raceNumber--inClass {
+  grid-area: inClass;
+  background: #cccccc;
+}
+
+.RaceEntry__carClass {
+  grid-area: carClass;
+  background: #cccccc;
+}

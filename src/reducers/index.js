@@ -7,3 +7,5 @@ export default combineReducers({
 });
 
 export const getRaces = state => racesSelectors.getRaces(state.races);
+export const getRaceEntries = state => racesSelectors.getRaceEntries(state.races);
+export const getLoading = state => racesSelectors.getLoading(state.races);

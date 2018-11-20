@@ -1,37 +1,37 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
 import Race from '../../components/Race';
-import { fetchRaces as fetchRacesAction } from '../../actions/races';
-import { getRaces } from '../../reducers';
+import { getLoading, getRaces } from '../../reducers';
 
-class RaceList extends React.Component {
-  componentDidMount() {
-    const { fetchRaces } = this.props;
-    fetchRaces();
+function RaceList(props) {
+  const { isLoading, races } = props;
+
+  if (isLoading) {
+    return null;
   }
 
-  render() {
-    const { races } = this.props;
-    const raceComponents = Object.keys(races).map(id => (
-      <Race {...races[id]} key={id} />
-    ));
-
-    return <div className="RaceList">{raceComponents}</div>;
-  }
+  const raceComponents = Object.keys(races).map(id => <Race {...races[id]} key={id} />);
+  return <div className="RaceList">{raceComponents}</div>;
 }
+
+RaceList.propTypes = {
+  races: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      location: PropTypes.string,
+    }),
+  ).isRequired,
+  isLoading: PropTypes.bool.isRequired,
+};
 
 export function mapStateToProps(state) {
   return {
     races: getRaces(state),
+    isLoading: getLoading(state),
   };
 }
 
-const mapDispatchToProps = {
-  fetchRaces: fetchRacesAction,
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(RaceList);
+export default connect(mapStateToProps)(RaceList);
