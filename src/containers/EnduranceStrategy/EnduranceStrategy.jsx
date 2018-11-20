@@ -1,6 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import EntryList from '../EntryList';
 import PageBanner from '../../components/PageBanner';
 import RaceList from '../RaceList';
 
@@ -10,7 +11,8 @@ export default function EnduranceStrategy() {
       <div className="root">
         <PageBanner />
         <main>
-          <RaceList />
+          <Route exact path="/" component={RaceList} />
+          <Route exact path="/race/:id" component={EntryList} />
         </main>
       </div>
     </Router>
