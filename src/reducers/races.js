@@ -9,7 +9,7 @@ import {
 
 const defaultState = {
   races: {},
-  entries: [],
+  entries: {},
   loading: false,
   error: null,
 };
@@ -63,12 +63,15 @@ export default function reducer(state = defaultState, action) {
   }
 
   if (action.type === FETCH_RACE_ENTRIES_SUCCESS) {
-    const { entries } = action;
+    const { raceId, entries } = action;
     return {
       ...state,
       loading: false,
       error: null,
-      entries,
+      entries: {
+        ...state.entries,
+        [raceId]: entries,
+      },
     };
   }
 

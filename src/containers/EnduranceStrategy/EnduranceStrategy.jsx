@@ -21,7 +21,7 @@ export class EnduranceStrategy extends React.Component {
           <PageBanner />
           <main>
             <Route exact path="/" component={RaceList} />
-            <Route exact path="/race/:id" component={EntryList} />
+            <Route exact path="/race/:raceId" component={EntryList} />
           </main>
         </div>
       </Router>

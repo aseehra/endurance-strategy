@@ -39,8 +39,9 @@ const fetchRaceEntriesStart = () => ({
   type: FETCH_RACE_ENTRIES,
 });
 
-export const fetchRaceEntriesSuccess = entries => ({
+export const fetchRaceEntriesSuccess = ({ raceId, entries }) => ({
   type: FETCH_RACE_ENTRIES_SUCCESS,
+  raceId,
   entries,
 });
 
@@ -55,6 +56,6 @@ export const fetchRaceEntries = uri => (dispatch) => {
   fetch(`${API_BASE_URL}${uri}`)
     .then(normalizeErrors)
     .then(res => res.json())
-    .then(data => dispatch(fetchRaceEntriesSuccess(data.entries)))
+    .then(data => dispatch(fetchRaceEntriesSuccess(data)))
     .catch(error => dispatch(fetchRaceEntriesFailure(error)));
 };

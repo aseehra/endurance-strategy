@@ -11,30 +11,28 @@ import { getLoading, getRaces, getRaceEntries } from '../../reducers';
 
 class EntryList extends React.Component {
   componentDidMount() {
-    const {
-      fetchRaces, fetchRaceEntries, match, races,
-    } = this.props;
-    const { id: raceId } = match.params;
-    if (!(raceId in races)) {
-      fetchRaces();
-    } else {
-      const uri = races[raceId].links.entries;
+    const { entries, fetchRaceEntries, race } = this.props;
+
+    if (!entries && race) {
+      const uri = race.links.entries;
       fetchRaceEntries(uri);
     }
   }
 
   componentDidUpdate(prevProps) {
-    const { fetchRaceEntries, match, races } = this.props;
-    if (prevProps.races !== races) {
-      const { id: raceId } = match.params;
-      const uri = races[raceId].links.entries;
-      fetchRaceEntries(uri);
+    const { entries, fetchRaceEntries, race } = this.props;
+
+    if (prevProps.race !== race) {
+      if (!entries) {
+        const uri = race.links.entries;
+        fetchRaceEntries(uri);
+      }
     }
   }
 
   render() {
     const { entries, isLoading } = this.props;
-    if (isLoading) {
+    if (isLoading || !entries) {
       // TODO: loading spinner
       return null;
     }
@@ -48,15 +46,19 @@ class EntryList extends React.Component {
 
 EntryList.propTypes = {
   match: PropTypes.shape({
-    params: PropTypes.shape({ id: PropTypes.string }).isRequired,
+    params: PropTypes.shape({ raceId: PropTypes.string }).isRequired,
   }).isRequired,
 };
 
-const mapStateToProps = state => ({
-  entries: getRaceEntries(state),
-  races: getRaces(state),
-  isLoading: getLoading(state),
-});
+const mapStateToProps = (state, ownProps) => {
+  const { raceId } = ownProps.match.params;
+
+  return {
+    entries: getRaceEntries(state)[raceId],
+    race: getRaces(state)[raceId],
+    isLoading: getLoading(state),
+  };
+};
 
 const mapDispatchToProps = {
   fetchRaces: fetchRacesAction,
