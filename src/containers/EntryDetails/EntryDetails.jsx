@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import EntryTable from '../../components/EntryTable';
+import PitStopTable from '../../components/PitStopTable';
 import { getStatistics } from '../../reducers';
 import { fetchStatistics as fetchStatisticsAction } from '../../actions/statistics';
 
@@ -22,6 +23,7 @@ class EntryDetails extends React.Component {
     return (
       <div className="EntryDetails">
         <EntryTable {...statistics} />
+        <PitStopTable {...statistics} />
       </div>
     );
   }
