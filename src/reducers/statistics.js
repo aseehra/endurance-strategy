@@ -22,13 +22,13 @@ export default function reducer(state = defaultState, action) {
   }
 
   if (type === FETCH_ENTRY_STATISTICS_SUCCESS) {
-    const { averageLapTime, entryId, fastestLap } = action;
+    const { entryId, ...data } = action;
     const { [entryId]: throwaway, ...loading } = state.loading;
     return {
       ...state,
       statistics: {
         ...state.statistics,
-        [entryId]: { averageLapTime, fastestLap },
+        [entryId]: data,
       },
       loading,
     };
