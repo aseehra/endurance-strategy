@@ -17,14 +17,14 @@ class EntryList extends React.Component {
   }
 
   render() {
-    const { entries, isLoading } = this.props;
+    const { entries, isLoading, raceId } = this.props;
     if (isLoading || !entries) {
       // TODO: loading spinner
       return null;
     }
 
     const entryComponents = entries.map(entry => (
-      <RaceEntry key={entry.id} {...entry} />
+      <RaceEntry key={entry.id} {...entry} raceId={raceId} />
     ));
     return <div className="EntryList">{entryComponents}</div>;
   }

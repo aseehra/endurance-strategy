@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import EntryDetails from '../EntryDetails';
 import EntryList from '../EntryList';
 import PageBanner from '../../components/PageBanner';
 import RaceList from '../RaceList';
@@ -22,6 +23,7 @@ export class EnduranceStrategy extends React.Component {
           <main>
             <Route exact path="/" component={RaceList} />
             <Route exact path="/race/:raceId" component={EntryList} />
+            <Route exact path="/race/:raceId/entry/:entryId" component={EntryDetails} />
           </main>
         </div>
       </Router>

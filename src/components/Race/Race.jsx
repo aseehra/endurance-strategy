@@ -8,13 +8,15 @@ import Card from '../Card';
 export default function Race(props) {
   const { id, location, name } = props;
   return (
-    <Link to={`/race/${id}`} className="unadorned-link Race">
-      <Card>
-        <header>
-          <h2 className="h6 Race__name">{name}</h2>
-        </header>
-        <div className="Race__location">{location}</div>
-      </Card>
+    <Link to={`/race/${id}`} className="unadorned-link">
+      <div className="Race">
+        <Card>
+          <header>
+            <h2 className="h6 Race__name">{name}</h2>
+          </header>
+          <div className="Race__location">{location}</div>
+        </Card>
+      </div>
     </Link>
   );
 }
