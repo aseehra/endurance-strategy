@@ -1,5 +1,9 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
+
+import { updateRaceEntryFilter } from '../../actions/races';
+import { getRaceEntriesFilter } from '../../reducers';
 
 class FilterSearch extends React.Component {
   constructor(props) {
@@ -16,21 +20,40 @@ class FilterSearch extends React.Component {
   }
 
   onChange() {
-    console.log('Change', this.searchInput.current.value);
+    const { onSearchChange } = this.props;
+    onSearchChange(this.searchInput.current.value);
   }
 
   render() {
+    const { searchValue } = this.props;
     return (
       <form onSubmit={this.onSubmit}>
         <input
-          type="text"
+          type="search"
           placeholder="Search"
           ref={this.searchInput}
           onChange={this.onChange}
+          value={searchValue}
         />
       </form>
     );
   }
 }
 
-export default connect()(FilterSearch);
+FilterSearch.propTypes = {
+  onSearchChange: PropTypes.func.isRequired,
+  searchValue: PropTypes.string.isRequired,
+};
+
+const mapDispatchToProps = {
+  onSearchChange: updateRaceEntryFilter,
+};
+
+const mapStateToProps = state => ({
+  searchValue: getRaceEntriesFilter(state),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(FilterSearch);

@@ -8,6 +8,7 @@ import {
   FETCH_RACE_ENTRIES,
   FETCH_RACE_ENTRIES_FAILURE,
   FETCH_RACE_ENTRIES_SUCCESS,
+  UPDATE_RACE_ENTRIES_FILTER,
 } from './types';
 import { normalizeErrors } from '../utils/fetch';
 
@@ -59,3 +60,8 @@ export const fetchRaceEntries = id => (dispatch) => {
     .then(data => dispatch(fetchRaceEntriesSuccess(data)))
     .catch(error => dispatch(fetchRaceEntriesFailure(error)));
 };
+
+export const updateRaceEntryFilter = filter => ({
+  type: UPDATE_RACE_ENTRIES_FILTER,
+  filter,
+});

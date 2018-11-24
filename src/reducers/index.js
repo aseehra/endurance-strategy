@@ -12,6 +12,7 @@ export const getRaces = state => racesSelectors.getRaces(state.races);
 export const getRaceEntries = state => racesSelectors.getRaceEntries(state.races);
 export const getRacesLoading = state => racesSelectors.getRacesLoading(state.races);
 export const getEntriesLoading = state => racesSelectors.getEntriesLoading(state.races);
+export const getRaceEntriesFilter = state => racesSelectors.getFilter(state.races);
 
 export const getLoading = state => statisticsSelectors.getLoading(state.statistics);
 export const getStatistics = state => statisticsSelectors.getStatistics(state.statistics);
