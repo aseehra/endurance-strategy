@@ -6,7 +6,11 @@ import {
   fetchRaces as fetchRacesAction,
   fetchRaceEntries as fetchRaceEntriesAction,
 } from '../../actions/races';
-import { getEntriesLoading, getRaceEntries } from '../../reducers';
+import {
+  getEntriesLoading,
+  getRaceEntries,
+  getRaceEntriesFilter,
+} from '../../reducers';
 
 class EntryList extends React.Component {
   componentDidMount() {
@@ -17,15 +21,22 @@ class EntryList extends React.Component {
   }
 
   render() {
-    const { entries, isLoading, raceId } = this.props;
+    const {
+      entries, entryFilter, isLoading, raceId,
+    } = this.props;
     if (isLoading || !entries) {
       // TODO: loading spinner
       return null;
     }
 
-    const entryComponents = entries.map(entry => (
-      <RaceEntry key={entry.id} {...entry} raceId={raceId} />
-    ));
+    const entryFilterNormalized = entryFilter.toLowerCase();
+    const entryComponents = entries
+      .filter(
+        entry => entry.manufacturer.toLowerCase().includes(entryFilterNormalized)
+          || entry.driverName.toLowerCase().includes(entryFilterNormalized)
+          || entry.carNumber.toString().includes(entryFilterNormalized),
+      )
+      .map(entry => <RaceEntry key={entry.id} {...entry} raceId={raceId} />);
     return <div className="EntryList">{entryComponents}</div>;
   }
 }
@@ -37,6 +48,7 @@ const mapStateToProps = (state, ownProps) => {
     raceId,
     entries: getRaceEntries(state)[raceId],
     isLoading: getEntriesLoading(state),
+    entryFilter: getRaceEntriesFilter(state),
   };
 };
 
