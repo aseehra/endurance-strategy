@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -40,6 +41,24 @@ class EntryList extends React.Component {
     return <div className="EntryList">{entryComponents}</div>;
   }
 }
+
+EntryList.propTypes = {
+  raceId: PropTypes.string.isRequired,
+  entries: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      manufacturer: PropTypes.string.isRequired,
+      driverName: PropTypes.string.isRequired,
+      carNumber: PropTypes.number.isRequired,
+    }),
+  ),
+  isLoading: PropTypes.bool.isRequired,
+  entryFilter: PropTypes.string.isRequired,
+};
+
+EntryList.defaultProps = {
+  entries: null,
+};
 
 const mapStateToProps = (state, ownProps) => {
   const { raceId } = ownProps.match.params;
