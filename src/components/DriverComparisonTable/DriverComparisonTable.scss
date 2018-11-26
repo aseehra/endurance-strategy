@@ -1,5 +1,11 @@
+@import '../../styles/base';
+
 .DriverComparisonTable__header {
   text-align: center;
+}
+
+.DriverComparisonTable__title {
+  @include ms-5();
 }
 
 .DriverComparisonTable__table {

@@ -25,8 +25,8 @@ class EntryDetails extends React.Component {
     return (
       <div className="EntryDetails">
         <EntryTable {...statistics} />
-        <PitStopTable {...statistics} />
         <DriverComparsionTable {...statistics} />
+        <PitStopTable {...statistics} />
       </div>
     );
   }

@@ -1,5 +1,11 @@
+@import '../../styles/base';
+
 .PitStopTable__header {
   text-align: center;
+}
+
+.PitStopTable__title {
+  @include ms-5();
 }
 
 .PitStopTable__table {

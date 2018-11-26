@@ -7,13 +7,17 @@ export default function TitleBlock(props) {
   const { entryTitle, mainTitle } = props;
   let entryBlock;
   if (entryTitle) {
-    entryBlock = <h2 className="TitleBlock__entry">{entryTitle}</h2>;
+    entryBlock = (
+      <h2 className="TitleBlock__banner TitleBlock__banner--normal">{entryTitle}</h2>
+    );
   }
 
   return (
     <header className="TitleBlock">
       <h1
-        className={`TitleBlock__main ${entryTitle ? '.TitleBlock__main--small' : ''}`}
+        className={`TitleBlock__banner ${
+          entryTitle ? 'TitleBlock__banner--small' : 'TitleBlock__banner--normal'
+        }`}
       >
         {mainTitle}
       </h1>

@@ -1,3 +1,5 @@
+@import '../../styles/base';
+
 .RaceEntry__contents {
   display: grid;
   grid:
@@ -14,6 +16,7 @@
 
 .RaceEntry__entryName {
   grid-area: entryName;
+  @include ms-5();
 }
 
 .RaceEntry__driverName {

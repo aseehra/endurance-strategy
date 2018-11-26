@@ -18,7 +18,7 @@ export default function PitStopTable(props) {
     <div className="PitStopTable">
       <Card>
         <header className="PitStopTable__header">
-          <h2 className="h5">Pit Stops</h2>
+          <h3 className="PitStopTable__title">Pit Stops</h3>
         </header>
         <table className="PitStopTable__table">
           <thead>

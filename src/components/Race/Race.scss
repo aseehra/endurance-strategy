@@ -1,4 +1,10 @@
+@import '../../styles/base';
+
 .Race__name,
 .Race__location {
   text-align: center;
+}
+
+.Race__name {
+  @include ms-5();
 }

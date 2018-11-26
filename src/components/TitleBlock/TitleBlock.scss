@@ -1,25 +1,23 @@
+@import '../../styles/base';
+
 .TitleBlock {
   margin-top: 1rem;
 }
 
-@mixin TitleBlock__block {
+.TitleBlock__banner {
   display: block;
   text-align: center;
   background: #444444;
   color: white;
-}
-
-.TitleBlock__main {
-  @include TitleBlock__block();
-  padding: 1rem 0;
-}
-
-.TitleBlock__main--small {
-  padding: 0;
-}
-
-.TitleBlock__entry {
-  @include TitleBlock__block();
   margin-top: 1rem;
+}
+
+.TitleBlock__banner--normal {
+  @include ms-4();
   padding: 1rem 0;
+}
+
+.TitleBlock__banner--small {
+  @include ms-5();
+  padding: 0;
 }

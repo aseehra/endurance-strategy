@@ -20,7 +20,7 @@ export default function DriverComparsionTable(props) {
     <div className="DriverComparisonTable">
       <Card>
         <header className="DriverComparisonTable__header">
-          <h2 className="h5">Drivers</h2>
+          <h3 className="DriverComparisonTable__title">Drivers</h3>
         </header>
         <table className="DriverComparisonTable__table">
           <thead>

@@ -12,7 +12,7 @@ export default function Race(props) {
       <div className="Race">
         <Card>
           <header>
-            <h2 className="h6 Race__name">{name}</h2>
+            <h2 className="Race__name">{name}</h2>
           </header>
           <div className="Race__location">{location}</div>
         </Card>
