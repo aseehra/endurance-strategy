@@ -91,6 +91,7 @@ export default function reducer(state = defaultState, action) {
 
 export const selectors = {
   getRaces: state => state.races,
+  getRace: state => raceId => state.races[raceId],
   getRaceEntries: state => state.entries,
   getRacesLoading: state => state.racesLoading,
   getEntriesLoading: state => state.entriesLoading,

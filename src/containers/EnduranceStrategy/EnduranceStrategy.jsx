@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import EntryDetails from '../EntryDetails';
 import EntryList from '../EntryList';
-import PageBanner from '../../components/PageBanner';
+import PageTitle from '../PageTitle';
 import RaceList from '../RaceList';
 import TopNav from '../../components/TopNav';
 import { fetchRaces as fetchRacesAction } from '../../actions/races';
@@ -24,7 +24,7 @@ class EnduranceStrategy extends React.Component {
           parameters, as because of the '/entry' string */}
           <Route exact path="/race/:raceId" component={TopNav} />
           <Route exact path="/race/:raceId/entry/:entryId" component={TopNav} />
-          <PageBanner />
+          <PageTitle />
           <main>
             <Route exact path="/" component={RaceList} />
             <Route exact path="/race/:raceId" component={EntryList} />

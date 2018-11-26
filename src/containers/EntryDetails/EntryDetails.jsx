@@ -11,6 +11,7 @@ import { fetchStatistics as fetchStatisticsAction } from '../../actions/statisti
 class EntryDetails extends React.Component {
   componentDidMount() {
     const { entryId, fetchStatistics, statistics } = this.props;
+
     if (!statistics) {
       fetchStatistics(entryId);
     }
@@ -32,6 +33,7 @@ class EntryDetails extends React.Component {
 }
 
 EntryDetails.propTypes = {
+  entryId: PropTypes.string.isRequired,
   fetchStatistics: PropTypes.func.isRequired,
   statistics: PropTypes.shape({
     averageLapTime: PropTypes.number,
