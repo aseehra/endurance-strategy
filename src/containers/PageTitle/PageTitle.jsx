@@ -4,7 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import PageBanner from '../../components/PageBanner';
+import TitleBlock from '../../components/TitleBlock';
 import { fetchRaceEntries as fetchRaceEntriesAction } from '../../actions/races';
 import { getRace, getRaceEntries, getEntriesLoading } from '../../reducers';
 
@@ -23,7 +23,7 @@ class PageTitle extends React.Component {
     const title = race
       ? `${race.name} – ${race.location}`
       : 'Endurance Strategy Reporter';
-    return <PageBanner title={title} />;
+    return <TitleBlock title={title} />;
   }
 }
 

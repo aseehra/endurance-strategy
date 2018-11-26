@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import './PageBanner.scss';
+import './TitleBlock.scss';
 
-export default function PageBanner(props) {
+export default function TitleBlock(props) {
   const { title } = props;
   return (
     <header className="PageBanner">
@@ -12,10 +12,10 @@ export default function PageBanner(props) {
   );
 }
 
-PageBanner.propTypes = {
+TitleBlock.propTypes = {
   title: PropTypes.string,
 };
 
-PageBanner.defaultProps = {
+TitleBlock.defaultProps = {
   title: 'Endurance Strategy Reporter',
 };
