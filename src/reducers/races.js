@@ -5,6 +5,7 @@ import {
   FETCH_RACE_ENTRIES,
   FETCH_RACE_ENTRIES_FAILURE,
   FETCH_RACE_ENTRIES_SUCCESS,
+  UPDATE_RACE_ENTRIES_FILTER,
 } from '../actions/types';
 
 const defaultState = {
@@ -13,6 +14,7 @@ const defaultState = {
   racesLoading: false,
   entriesLoading: false,
   error: null,
+  filter: '',
 };
 
 export default function reducer(state = defaultState, action) {
@@ -76,6 +78,14 @@ export default function reducer(state = defaultState, action) {
     };
   }
 
+  if (action.type === UPDATE_RACE_ENTRIES_FILTER) {
+    const { filter } = action;
+    return {
+      ...state,
+      filter,
+    };
+  }
+
   return state;
 }
 
@@ -84,4 +94,5 @@ export const selectors = {
   getRaceEntries: state => state.entries,
   getRacesLoading: state => state.racesLoading,
   getEntriesLoading: state => state.entriesLoading,
+  getFilter: state => state.filter,
 };

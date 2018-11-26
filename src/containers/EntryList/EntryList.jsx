@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -6,7 +7,11 @@ import {
   fetchRaces as fetchRacesAction,
   fetchRaceEntries as fetchRaceEntriesAction,
 } from '../../actions/races';
-import { getEntriesLoading, getRaceEntries } from '../../reducers';
+import {
+  getEntriesLoading,
+  getRaceEntries,
+  getRaceEntriesFilter,
+} from '../../reducers';
 
 class EntryList extends React.Component {
   componentDidMount() {
@@ -17,18 +22,43 @@ class EntryList extends React.Component {
   }
 
   render() {
-    const { entries, isLoading, raceId } = this.props;
+    const {
+      entries, entryFilter, isLoading, raceId,
+    } = this.props;
     if (isLoading || !entries) {
       // TODO: loading spinner
       return null;
     }
 
-    const entryComponents = entries.map(entry => (
-      <RaceEntry key={entry.id} {...entry} raceId={raceId} />
-    ));
+    const entryFilterNormalized = entryFilter.toLowerCase();
+    const entryComponents = entries
+      .filter(
+        entry => entry.manufacturer.toLowerCase().includes(entryFilterNormalized)
+          || entry.driverName.toLowerCase().includes(entryFilterNormalized)
+          || entry.carNumber.toString().includes(entryFilterNormalized),
+      )
+      .map(entry => <RaceEntry key={entry.id} {...entry} raceId={raceId} />);
     return <div className="EntryList">{entryComponents}</div>;
   }
 }
+
+EntryList.propTypes = {
+  raceId: PropTypes.string.isRequired,
+  entries: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      manufacturer: PropTypes.string.isRequired,
+      driverName: PropTypes.string.isRequired,
+      carNumber: PropTypes.number.isRequired,
+    }),
+  ),
+  isLoading: PropTypes.bool.isRequired,
+  entryFilter: PropTypes.string.isRequired,
+};
+
+EntryList.defaultProps = {
+  entries: null,
+};
 
 const mapStateToProps = (state, ownProps) => {
   const { raceId } = ownProps.match.params;
@@ -37,6 +67,7 @@ const mapStateToProps = (state, ownProps) => {
     raceId,
     entries: getRaceEntries(state)[raceId],
     isLoading: getEntriesLoading(state),
+    entryFilter: getRaceEntriesFilter(state),
   };
 };
 
