@@ -3,6 +3,7 @@ import React from 'react';
 
 import './EntryTable.scss';
 import Card from '../Card';
+import TimeInterval from '../TimeInterval';
 
 export default function EntryTable(props) {
   const { averageLapTime, fastestLap } = props;
@@ -13,7 +14,9 @@ export default function EntryTable(props) {
           <tbody>
             <tr>
               <td>Average lap time</td>
-              <td>{averageLapTime}</td>
+              <td>
+                <TimeInterval time={averageLapTime} />
+              </td>
             </tr>
             <tr>
               <td>Best lap</td>
@@ -21,7 +24,9 @@ export default function EntryTable(props) {
             </tr>
             <tr>
               <td>Best lap time</td>
-              <td>{fastestLap.lapTime}</td>
+              <td>
+                <TimeInterval time={fastestLap.lapTime} />
+              </td>
             </tr>
             <tr>
               <td>Fastest driver</td>

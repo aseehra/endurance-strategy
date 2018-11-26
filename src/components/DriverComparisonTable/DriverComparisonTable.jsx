@@ -3,6 +3,7 @@ import React from 'react';
 
 import './DriverComparisonTable.scss';
 import Card from '../Card';
+import TimeInterval from '../TimeInterval';
 
 export default function DriverComparsionTable(props) {
   const { driverData } = props;
@@ -11,8 +12,12 @@ export default function DriverComparsionTable(props) {
     .map(driver => (
       <tr key={driver.driverId}>
         <td>{driver.driverName}</td>
-        <td>{driver.fastestLapTime}</td>
-        <td>{driver.averageLapTime}</td>
+        <td>
+          <TimeInterval time={driver.fastestLapTime} />
+        </td>
+        <td>
+          <TimeInterval time={driver.averageLapTime} />
+        </td>
       </tr>
     ));
 
@@ -26,7 +31,7 @@ export default function DriverComparsionTable(props) {
           <thead>
             <tr>
               <th>Driver Name</th>
-              <th>Fastest Lap Time</th>
+              <th>Best Lap Time</th>
               <th>Average Lap Time</th>
             </tr>
           </thead>

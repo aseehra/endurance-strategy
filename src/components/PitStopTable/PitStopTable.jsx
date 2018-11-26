@@ -3,6 +3,7 @@ import React from 'react';
 
 import './PitStopTable.scss';
 import Card from '../Card';
+import TimeInterval from '../TimeInterval';
 
 export default function PitStopTable(props) {
   const { pitStops } = props;
@@ -11,7 +12,9 @@ export default function PitStopTable(props) {
       <td>{index + 1}</td>
       <td>{stop.lapIn}</td>
       <td>{stop.lapOut}</td>
-      <td>{stop.timeInLane}</td>
+      <td>
+        <TimeInterval time={stop.timeInLane} />
+      </td>
     </tr>
   ));
   return (
