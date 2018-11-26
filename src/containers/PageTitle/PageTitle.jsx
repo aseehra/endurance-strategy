@@ -66,8 +66,8 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state, ownProps) => {
   const { pathname } = ownProps.location;
-  const raceRE = pathToRegexp('/race/:raceId', { end: false });
-  const entryRE = pathToRegexp('/race/:raceId/entry/:entryId', { end: false });
+  const raceRE = pathToRegexp('/race/:raceId', [], { end: false });
+  const entryRE = pathToRegexp('/race/:raceId/entry/:entryId', [], { end: false });
   const parsedRace = raceRE.exec(pathname);
   const parsedEntry = entryRE.exec(pathname);
 
