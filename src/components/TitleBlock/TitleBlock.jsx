@@ -4,18 +4,29 @@ import React from 'react';
 import './TitleBlock.scss';
 
 export default function TitleBlock(props) {
-  const { title } = props;
+  const { entryTitle, mainTitle } = props;
+  let entryBlock;
+  if (entryTitle) {
+    entryBlock = <h2 className="TitleBlock__entry">{entryTitle}</h2>;
+  }
+
   return (
-    <header className="PageBanner">
-      <h1 className="PageBanner__title h3">{title}</h1>
+    <header className="TitleBlock">
+      <h1
+        className={`TitleBlock__main ${entryTitle ? '.TitleBlock__main--small' : ''}`}
+      >
+        {mainTitle}
+      </h1>
+      {entryBlock}
     </header>
   );
 }
 
 TitleBlock.propTypes = {
-  title: PropTypes.string,
+  mainTitle: PropTypes.string.isRequired,
+  entryTitle: PropTypes.string,
 };
 
 TitleBlock.defaultProps = {
-  title: 'Endurance Strategy Reporter',
+  entryTitle: '',
 };

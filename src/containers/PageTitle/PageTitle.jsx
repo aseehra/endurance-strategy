@@ -19,11 +19,18 @@ class PageTitle extends React.Component {
   }
 
   render() {
-    const { race } = this.props;
-    const title = race
+    const { race, entries, entryId } = this.props;
+    const mainTitle = race
       ? `${race.name} – ${race.location}`
       : 'Endurance Strategy Reporter';
-    return <TitleBlock title={title} />;
+
+    let entryTitle;
+    if (entries && entryId !== null) {
+      const { carNumber, manufacturer } = entries[entryId];
+      entryTitle = `#${carNumber} – ${manufacturer}`;
+    }
+
+    return <TitleBlock mainTitle={mainTitle} entryTitle={entryTitle} />;
   }
 }
 
