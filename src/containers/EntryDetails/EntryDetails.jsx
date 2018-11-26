@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
+import DriverComparsionTable from '../../components/DriverComparisonTable';
 import EntryTable from '../../components/EntryTable';
 import PitStopTable from '../../components/PitStopTable';
 import { getStatistics } from '../../reducers';
@@ -24,6 +25,7 @@ class EntryDetails extends React.Component {
       <div className="EntryDetails">
         <EntryTable {...statistics} />
         <PitStopTable {...statistics} />
+        <DriverComparsionTable {...statistics} />
       </div>
     );
   }
