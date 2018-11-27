@@ -31,12 +31,13 @@ class EntryList extends React.Component {
     }
 
     const entryFilterNormalized = entryFilter.toLowerCase();
-    const entryComponents = entries
+    const entryComponents = Object.values(entries)
       .filter(
         entry => entry.manufacturer.toLowerCase().includes(entryFilterNormalized)
           || entry.driverName.toLowerCase().includes(entryFilterNormalized)
           || entry.carNumber.toString().includes(entryFilterNormalized),
       )
+      .sort((entryA, entryB) => entryA.carNumber - entryB.carNumber)
       .map(entry => <RaceEntry key={entry.id} {...entry} raceId={raceId} />);
     return <div className="EntryList">{entryComponents}</div>;
   }
@@ -44,7 +45,7 @@ class EntryList extends React.Component {
 
 EntryList.propTypes = {
   raceId: PropTypes.string.isRequired,
-  entries: PropTypes.arrayOf(
+  entries: PropTypes.objectOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       manufacturer: PropTypes.string.isRequired,
