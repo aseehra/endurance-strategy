@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import EntryDetails from '../EntryDetails';
 import EntryList from '../EntryList';
@@ -26,9 +26,11 @@ class EnduranceStrategy extends React.Component {
           <Route exact path="/race/:raceId/entry/:entryId" component={TopNav} />
           <PageTitle />
           <main>
-            <Route exact path="/" component={RaceList} />
-            <Route exact path="/race/:raceId" component={EntryList} />
-            <Route exact path="/race/:raceId/entry/:entryId" component={EntryDetails} />
+            <Switch>
+              <Route path="/race/:raceId/entry/:entryId" component={EntryDetails} />
+              <Route path="/race/:raceId" component={EntryList} />
+              <Route path="/" component={RaceList} />
+            </Switch>
           </main>
         </div>
       </Router>
