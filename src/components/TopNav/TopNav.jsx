@@ -3,10 +3,13 @@ import React from 'react';
 
 import FilterSearch from '../../containers/FilterSearch';
 
-export default function TopNav() {
+export default function TopNav(props) {
+  const { history, match } = props;
+  const { raceId } = match.params;
+
   return (
     <nav className="TopNav">
-      <FilterSearch />
+      <FilterSearch history={history} raceId={raceId} />
     </nav>
   );
 }
@@ -18,4 +21,5 @@ TopNav.propTypes = {
       entryId: PropTypes.string,
     }).isRequired,
   }).isRequired,
+  history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
 };

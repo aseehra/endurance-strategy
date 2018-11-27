@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import queryString from 'query-string';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -15,8 +16,9 @@ class FilterSearch extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    // TODO: redirect to a the entries on enter
-    console.log('Submit', this.searchInput.current.value);
+    const { history, raceId, searchValue } = this.props;
+    const query = queryString.stringify({ search: searchValue });
+    history.push(`/race/${raceId}?${query}`);
   }
 
   onChange() {
@@ -43,6 +45,8 @@ class FilterSearch extends React.Component {
 FilterSearch.propTypes = {
   onSearchChange: PropTypes.func.isRequired,
   searchValue: PropTypes.string.isRequired,
+  raceId: PropTypes.string.isRequired,
+  history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
 };
 
 const mapDispatchToProps = {

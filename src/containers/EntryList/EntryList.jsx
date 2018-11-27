@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import queryString from 'query-string';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -6,6 +7,7 @@ import RaceEntry from '../../components/RaceEntry/RaceEntry';
 import {
   fetchRaces as fetchRacesAction,
   fetchRaceEntries as fetchRaceEntriesAction,
+  updateRaceEntryFilter,
 } from '../../actions/races';
 import {
   getEntriesLoading,
@@ -15,10 +17,23 @@ import {
 
 class EntryList extends React.Component {
   componentDidMount() {
-    const { entries, fetchRaceEntries, raceId } = this.props;
+    const {
+      entries,
+      fetchRaceEntries,
+      raceId,
+      queryParams,
+      setSearchFilter,
+    } = this.props;
     if (!entries) {
       fetchRaceEntries(raceId);
     }
+
+    setSearchFilter(queryParams.search || '');
+  }
+
+  componentWillUnmount() {
+    const { setSearchFilter } = this.props;
+    setSearchFilter('');
   }
 
   render() {
@@ -55,26 +70,32 @@ EntryList.propTypes = {
   ),
   isLoading: PropTypes.bool.isRequired,
   entryFilter: PropTypes.string.isRequired,
+  setSearchFilter: PropTypes.func.isRequired,
+  queryParams: PropTypes.shape({ search: PropTypes.string }),
 };
 
 EntryList.defaultProps = {
   entries: null,
+  queryParams: {},
 };
 
 const mapStateToProps = (state, ownProps) => {
   const { raceId } = ownProps.match.params;
+  const { search } = ownProps.location;
 
   return {
     raceId,
     entries: getRaceEntries(state)[raceId],
     isLoading: getEntriesLoading(state),
     entryFilter: getRaceEntriesFilter(state),
+    queryParams: queryString.parse(search),
   };
 };
 
 const mapDispatchToProps = {
   fetchRaces: fetchRacesAction,
   fetchRaceEntries: fetchRaceEntriesAction,
+  setSearchFilter: updateRaceEntryFilter,
 };
 
 export default connect(
