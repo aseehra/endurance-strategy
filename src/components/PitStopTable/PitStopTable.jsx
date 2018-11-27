@@ -18,7 +18,7 @@ export default function PitStopTable(props) {
     </tr>
   ));
   return (
-    <div className="PitStopTable">
+    <section className="PitStopTable">
       <Card>
         <header className="PitStopTable__header">
           <h3 className="PitStopTable__title">Pit Stops</h3>
@@ -35,7 +35,7 @@ export default function PitStopTable(props) {
           <tbody>{pitRows}</tbody>
         </table>
       </Card>
-    </div>
+    </section>
   );
 }
 

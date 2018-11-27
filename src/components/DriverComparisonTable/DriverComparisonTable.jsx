@@ -22,7 +22,7 @@ export default function DriverComparsionTable(props) {
     ));
 
   return (
-    <div className="DriverComparisonTable">
+    <section className="DriverComparisonTable">
       <Card>
         <header className="DriverComparisonTable__header">
           <h3 className="DriverComparisonTable__title">Drivers</h3>
@@ -38,7 +38,7 @@ export default function DriverComparsionTable(props) {
           <tbody>{driverRows}</tbody>
         </table>
       </Card>
-    </div>
+    </section>
   );
 }
 

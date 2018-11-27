@@ -8,7 +8,7 @@ import TimeInterval from '../TimeInterval';
 export default function EntryTable(props) {
   const { averageLapTime, fastestLap } = props;
   return (
-    <div className="EntryTable">
+    <section className="EntryTable">
       <Card>
         <table className="EntryTable__table">
           <tbody>
@@ -35,7 +35,7 @@ export default function EntryTable(props) {
           </tbody>
         </table>
       </Card>
-    </div>
+    </section>
   );
 }
 
