@@ -2,10 +2,12 @@ import { combineReducers } from 'redux';
 
 import races, { selectors as racesSelectors } from './races';
 import statistics, { selectors as statisticsSelectors } from './statistics';
+import ux, { selectors as uxSelectors } from './ux';
 
 export default combineReducers({
   races,
   statistics,
+  ux,
 });
 
 export const getRaces = state => racesSelectors.getRaces(state.races);
@@ -17,4 +19,16 @@ export const getEntriesLoading = state => racesSelectors.getEntriesLoading(state
 export const getRaceEntriesFilter = state => racesSelectors.getFilter(state.races);
 
 export const getLoading = state => statisticsSelectors.getLoading(state.statistics);
-export const getStatistics = state => statisticsSelectors.getStatistics(state.statistics);
+// prettier-ignore
+export const getStatistics = state => statisticsSelectors.getStatistics(
+  state.statistics,
+);
+
+// prettier-ignore
+export const getMainOnboardingSeen = state => uxSelectors.getMainOnboardingSeen(
+  state.ux,
+);
+// prettier-ignore
+export const getRaceOnboardingSeen = state => uxSelectors.getRaceOnboardingSeen(
+  state.ux,
+);

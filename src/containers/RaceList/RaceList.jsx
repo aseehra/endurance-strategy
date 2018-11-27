@@ -2,18 +2,25 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
+import MainOnboarding from '../MainOnboarding';
 import Race from '../../components/Race';
-import { getRacesLoading, getRaces } from '../../reducers';
+import { getRacesLoading, getRaces, getMainOnboardingSeen } from '../../reducers';
 
 function RaceList(props) {
-  const { isLoading, races } = props;
+  const { isLoading, races, showOnboarding } = props;
 
   if (isLoading) {
     return null;
   }
 
+  const onboarding = showOnboarding ? <MainOnboarding /> : null;
   const raceComponents = Object.keys(races).map(id => <Race {...races[id]} key={id} />);
-  return <div className="RaceList">{raceComponents}</div>;
+  return (
+    <div className="RaceList">
+      {onboarding}
+      {raceComponents}
+    </div>
+  );
 }
 
 RaceList.propTypes = {
@@ -25,12 +32,14 @@ RaceList.propTypes = {
     }),
   ).isRequired,
   isLoading: PropTypes.bool.isRequired,
+  showOnboarding: PropTypes.bool.isRequired,
 };
 
 export function mapStateToProps(state) {
   return {
     races: getRaces(state),
     isLoading: getRacesLoading(state),
+    showOnboarding: !getMainOnboardingSeen(state),
   };
 }
 

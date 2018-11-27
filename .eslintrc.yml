@@ -9,3 +9,5 @@ rules:
   max-len:
     - warn
     - code: 88
+  jsx-a11y/no-noninteractive-element-interactions: off
+  jsx-a11y/no-noninteractive-tabindex: off
