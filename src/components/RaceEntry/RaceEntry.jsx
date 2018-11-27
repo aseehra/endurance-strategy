@@ -24,6 +24,7 @@ export default function RaceEntry(props) {
             <h2 className="RaceEntry__entryName">{manufacturer}</h2>
             <div className="RaceEntry__carClass">{carClass}</div>
             <div className="RaceEntry__raceNumber RaceEntry__raceNumber--entry">
+              #
               {carNumber}
             </div>
             <div className="RaceEntry__raceNumber RaceEntry__raceNumber--overall">

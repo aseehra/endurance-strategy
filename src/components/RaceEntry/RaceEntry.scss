@@ -30,22 +30,28 @@
   align-self: start;
 }
 
+.RaceEntry__raceNumber {
+  @include ms-6();
+  color: $c-foreground;
+}
+
 .RaceEntry__raceNumber--entry {
   grid-area: entryNumber;
-  background: #aaaaaa;
+  background: #2b2b2b;
 }
 
 .RaceEntry__raceNumber--overall {
   grid-area: overall;
-  background: #aaaaaa;
+  background: $c-blue;
 }
 
 .RaceEntry__raceNumber--inClass {
   grid-area: inClass;
-  background: #cccccc;
+  background: $c-green;
 }
 
 .RaceEntry__carClass {
   grid-area: carClass;
-  background: #cccccc;
+  background: $c-green;
+  color: $c-foreground;
 }

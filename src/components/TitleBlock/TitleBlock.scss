@@ -7,9 +7,10 @@
 .TitleBlock__banner {
   display: block;
   text-align: center;
-  background: #444444;
-  color: white;
+  color: #eeeeee;
   margin-top: 1rem;
+  @include dropShadow();
+  border-radius: 0.2rem;
 }
 
 .TitleBlock__banner--normal {
@@ -20,4 +21,12 @@
 .TitleBlock__banner--small {
   @include ms-5();
   padding: 0;
+}
+
+.TitleBlock__banner--entry {
+  background: $c-blue;
+}
+
+.TitleBlock__banner--race {
+  background: $c-red;
 }

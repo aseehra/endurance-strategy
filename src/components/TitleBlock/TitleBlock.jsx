@@ -6,16 +6,19 @@ import './TitleBlock.scss';
 export default function TitleBlock(props) {
   const { entryTitle, mainTitle } = props;
   let entryBlock;
+
   if (entryTitle) {
     entryBlock = (
-      <h2 className="TitleBlock__banner TitleBlock__banner--normal">{entryTitle}</h2>
+      <h2 className="TitleBlock__banner TitleBlock__banner--normal TitleBlock__banner--entry">
+        {entryTitle}
+      </h2>
     );
   }
 
   return (
     <header className="TitleBlock">
       <h1
-        className={`TitleBlock__banner ${
+        className={`TitleBlock__banner TitleBlock__banner--race ${
           entryTitle ? 'TitleBlock__banner--small' : 'TitleBlock__banner--normal'
         }`}
       >
