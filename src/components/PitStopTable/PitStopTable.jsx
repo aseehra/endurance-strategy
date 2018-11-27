@@ -26,10 +26,10 @@ export default function PitStopTable(props) {
         <table className="PitStopTable__table">
           <thead>
             <tr>
-              <th />
-              <th>Lap In</th>
-              <th>Lap Out</th>
-              <th>Time in Pit Lane</th>
+              <th className="PitStopTable__tableHeading">Stop</th>
+              <th className="PitStopTable__tableHeading">Lap In</th>
+              <th className="PitStopTable__tableHeading">Lap Out</th>
+              <th className="PitStopTable__tableHeading">Time in Pit Lane</th>
             </tr>
           </thead>
           <tbody>{pitRows}</tbody>

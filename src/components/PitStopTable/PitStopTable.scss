@@ -10,6 +10,17 @@
 
 .PitStopTable__table {
   width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
   table-layout: fixed;
   text-align: center;
+}
+
+.PitStopTable__tableHeading {
+  font-size: $ms-8-size;
+  @include tableBorder;
+
+  @include enhanceForMedia(tablets) {
+    font-size: $ms-7-size;
+  }
 }
