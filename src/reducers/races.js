@@ -73,7 +73,10 @@ export default function reducer(state = defaultState, action) {
       error: null,
       entries: {
         ...state.entries,
-        [raceId]: entries,
+        [raceId]: entries.reduce((acc, entry) => {
+          acc[entry.id] = entry;
+          return acc;
+        }, {}),
       },
     };
   }

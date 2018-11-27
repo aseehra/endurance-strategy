@@ -43,7 +43,7 @@ PageTitle.propTypes = {
   entriesLoading: PropTypes.bool,
   raceId: PropTypes.string,
   fetchRaceEntries: PropTypes.func.isRequired,
-  entries: PropTypes.arrayOf(
+  entries: PropTypes.objectOf(
     PropTypes.shape({
       carClass: PropTypes.string.isRequired,
       carNumber: PropTypes.number.isRequired,
