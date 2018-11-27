@@ -49,6 +49,10 @@ $ms-8-size: 1.0417rem;
     0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.12);
 }
 
+@mixin tableBorder {
+  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.1);
+}
+
 // Colors:
 $c-red: #721817;
 $c-yellow: #fa9f42;
@@ -56,3 +60,20 @@ $c-blue: #2b4162;
 $c-green: #0b6e4f;
 $c-grey: #e0e0e2;
 $c-foreground: #eeeeee;
+
+// Media breakpoints
+@mixin enhanceForMedia($media) {
+  @if $media == tablets {
+    @media only screen and (min-width: 600px) {
+      @content;
+    }
+  } @else if $media == desktop {
+    @media only screen and (min-width: 1024px) {
+      @content;
+    }
+  } @else if $media == widescreen {
+    @media only screen and (min-width: 1824px) {
+      @content;
+    }
+  }
+}

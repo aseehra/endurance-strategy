@@ -8,34 +8,44 @@ import TimeInterval from '../TimeInterval';
 export default function EntryTable(props) {
   const { averageLapTime, fastestLap } = props;
   return (
-    <div className="EntryTable">
+    <section className="EntryTable">
       <Card>
         <table className="EntryTable__table">
           <tbody>
-            <tr>
-              <td>Average lap time</td>
-              <td>
+            <tr className="EntryTable__row">
+              <td className="EntryTable__cell EntryTable__cell--heading">
+                Average lap time
+              </td>
+              <td className="EntryTable__cell EntryTable__cell--data">
                 <TimeInterval time={averageLapTime} />
               </td>
             </tr>
-            <tr>
-              <td>Best lap</td>
-              <td>{fastestLap.lapNumber}</td>
+            <tr className="EntryTable__row">
+              <td className="EntryTable__cell EntryTable__cell--heading">Best lap</td>
+              <td className="EntryTable__cell EntryTable__cell--data">
+                {fastestLap.lapNumber}
+              </td>
             </tr>
-            <tr>
-              <td>Best lap time</td>
-              <td>
+            <tr className="EntryTable__row">
+              <td className="EntryTable__cell EntryTable__cell--heading">
+                Best lap time
+              </td>
+              <td className="EntryTable__cell EntryTable__cell--data">
                 <TimeInterval time={fastestLap.lapTime} />
               </td>
             </tr>
-            <tr>
-              <td>Fastest driver</td>
-              <td>{fastestLap.driverName}</td>
+            <tr className="EntryTable__row">
+              <td className="EntryTable__cell EntryTable__cell--heading">
+                Fastest driver
+              </td>
+              <td className="EntryTable__cell EntryTable__cell--data">
+                {fastestLap.driverName}
+              </td>
             </tr>
           </tbody>
         </table>
       </Card>
-    </div>
+    </section>
   );
 }
 

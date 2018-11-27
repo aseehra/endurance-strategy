@@ -11,18 +11,20 @@ export default function DriverComparsionTable(props) {
     .sort((driverA, driverB) => driverA.fastestLapTime - driverB.fastestLapTime)
     .map(driver => (
       <tr key={driver.driverId}>
-        <td>{driver.driverName}</td>
-        <td>
+        <td className="DriverComparisonTable__cell DriverComparisonTable__cell--data">
+          {driver.driverName}
+        </td>
+        <td className="DriverComparisonTable__cell DriverComparisonTable__cell--data">
           <TimeInterval time={driver.fastestLapTime} />
         </td>
-        <td>
+        <td className="DriverComparisonTable__cell DriverComparisonTable__cell--data">
           <TimeInterval time={driver.averageLapTime} />
         </td>
       </tr>
     ));
 
   return (
-    <div className="DriverComparisonTable">
+    <section className="DriverComparisonTable">
       <Card>
         <header className="DriverComparisonTable__header">
           <h3 className="DriverComparisonTable__title">Drivers</h3>
@@ -30,15 +32,23 @@ export default function DriverComparsionTable(props) {
         <table className="DriverComparisonTable__table">
           <thead>
             <tr>
-              <th>Driver Name</th>
-              <th>Best Lap Time</th>
-              <th>Average Lap Time</th>
+              {/* eslint-disable max-len */}
+              <th className="DriverComparisonTable__cell DriverComparisonTable__cell--heading">
+                Driver Name
+              </th>
+              <th className="DriverComparisonTable__cell DriverComparisonTable__cell--heading">
+                Best Lap Time
+              </th>
+              <th className="DriverComparisonTable__cell DriverComparisonTable__cell--heading">
+                Average Lap Time
+              </th>
+              {/* eslint-enable max-len */}
             </tr>
           </thead>
           <tbody>{driverRows}</tbody>
         </table>
       </Card>
-    </div>
+    </section>
   );
 }
 
