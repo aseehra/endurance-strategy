@@ -64,11 +64,11 @@ $c-foreground: #eeeeee;
 // Media breakpoints
 @mixin enhanceForMedia($media) {
   @if $media == tablets {
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: 600px) {
       @content;
     }
   } @else if $media == desktop {
-    @media only screen and (min-width: 1224px) {
+    @media only screen and (min-width: 1024px) {
       @content;
     }
   } @else if $media == widescreen {

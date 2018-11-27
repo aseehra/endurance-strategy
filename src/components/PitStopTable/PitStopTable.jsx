@@ -9,10 +9,10 @@ export default function PitStopTable(props) {
   const { pitStops } = props;
   const pitRows = pitStops.map((stop, index) => (
     <tr key={stop.lapIn}>
-      <td>{index + 1}</td>
-      <td>{stop.lapIn}</td>
-      <td>{stop.lapOut}</td>
-      <td>
+      <td className="PitStopTable__cell PitStopTable__cell--data">{index + 1}</td>
+      <td className="PitStopTable__cell PitStopTable__cell--data">{stop.lapIn}</td>
+      <td className="PitStopTable__cell PitStopTable__cell--data">{stop.lapOut}</td>
+      <td className="PitStopTable__cell PitStopTable__cell--data">
         <TimeInterval time={stop.timeInLane} />
       </td>
     </tr>
@@ -26,10 +26,14 @@ export default function PitStopTable(props) {
         <table className="PitStopTable__table">
           <thead>
             <tr>
-              <th className="PitStopTable__tableHeading">Stop</th>
-              <th className="PitStopTable__tableHeading">Lap In</th>
-              <th className="PitStopTable__tableHeading">Lap Out</th>
-              <th className="PitStopTable__tableHeading">Time in Pit Lane</th>
+              <th className="PitStopTable__cell PitStopTable__cell--heading">Stop</th>
+              <th className="PitStopTable__cell PitStopTable__cell--heading">Lap In</th>
+              <th className="PitStopTable__cell PitStopTable__cell--heading">
+                Lap Out
+              </th>
+              <th className="PitStopTable__cell PitStopTable__cell--heading">
+                Time in Pit Lane
+              </th>
             </tr>
           </thead>
           <tbody>{pitRows}</tbody>

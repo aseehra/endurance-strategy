@@ -16,7 +16,15 @@
   text-align: center;
 }
 
-.PitStopTable__tableHeading {
+.PitStopTable__cell--data {
+  font-size: $ms-7-size;
+
+  @include enhanceForMedia(tablets) {
+    font-size: inherit;
+  }
+}
+
+.PitStopTable__cell--heading {
   font-size: $ms-8-size;
   @include tableBorder;
 

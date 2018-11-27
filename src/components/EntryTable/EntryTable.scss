@@ -1,5 +1,48 @@
+@import '../../styles/base';
+
 .EntryTable__table {
-  width: 100%;
+  margin: 0 auto;
   table-layout: fixed;
-  text-align: center;
+}
+
+.EntryTable__cell {
+  font-size: $ms-7-size;
+
+  @include enhanceForMedia(tablets) {
+    font-size: inherit;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+}
+
+.EntryTable__cell--heading {
+  text-align: right;
+  padding-right: 0.75rem;
+
+  @include enhanceForMedia(tablets) {
+    padding-right: 1rem;
+  }
+  @include enhanceForMedia(desktop) {
+    padding-right: 2rem;
+  }
+}
+
+.EntryTable__cell--heading::after {
+  content: ':';
+}
+
+.EntryTable__cell--data {
+  text-align: left;
+  padding-left: 0.75rem;
+
+  @include enhanceForMedia(tablets) {
+    padding-left: 1rem;
+  }
+
+  @include enhanceForMedia(desktop) {
+    padding-left: 2rem;
+  }
+}
+
+.EntryTable__row:last-child .EntryTable__cell {
+  border-bottom: none;
 }
