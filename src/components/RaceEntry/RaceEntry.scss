@@ -1,11 +1,20 @@
 @import '../../styles/base';
 
+.RaceEntry__card {
+  padding: 0;
+}
+
 .RaceEntry__contents {
   display: grid;
   grid:
-    'overall inClass entryName carClass entryNumber'
-    '. . driverName . .'
+    'overall inClass center carClass entryNumber'
+    '. . center . .'
     / 3rem 3rem auto 3rem 3rem;
+}
+
+.RaceEntry__center {
+  grid-area: center;
+  padding: 1rem 3px;
 }
 
 .RaceEntry__entryName,
@@ -16,7 +25,12 @@
 
 .RaceEntry__entryName {
   grid-area: entryName;
-  @include ms-5();
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+  @include enhanceForMedia(tablets) {
+    @include ms-5;
+    border-bottom: none;
+  }
 }
 
 .RaceEntry__driverName {
