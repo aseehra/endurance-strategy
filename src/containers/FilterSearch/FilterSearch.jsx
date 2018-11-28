@@ -32,11 +32,12 @@ class FilterSearch extends React.Component {
       <form onSubmit={this.onSubmit} className={`FilterSearch__form ${className}`}>
         <input
           type="search"
-          placeholder="Search"
+          placeholder="Search race entries"
           ref={this.searchInput}
           onChange={this.onChange}
           value={searchValue}
           className="FilterSearch__input"
+          aria-label="Search entries"
         />
       </form>
     );
