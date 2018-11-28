@@ -22,18 +22,33 @@ export default function RaceEntry(props) {
         <Card className="RaceEntry__card">
           <div className="RaceEntry__contents">
             <div className="RaceEntry__center">
-              <h2 className="RaceEntry__entryName">{manufacturer}</h2>
-              <div className="RaceEntry__driverName">{driverName}</div>
+              <h2 className="RaceEntry__entryName" title="Manufacturer">
+                {manufacturer}
+              </h2>
+              <div className="RaceEntry__driverName" title="Current Driver">
+                {driverName}
+              </div>
             </div>
-            <div className="RaceEntry__carClass">{carClass}</div>
-            <div className="RaceEntry__raceNumber RaceEntry__raceNumber--entry">
+            <div className="RaceEntry__carClass" title="Class">
+              {carClass}
+            </div>
+            <div
+              className="RaceEntry__raceNumber RaceEntry__raceNumber--entry"
+              title="Car number"
+            >
               #
               {carNumber}
             </div>
-            <div className="RaceEntry__raceNumber RaceEntry__raceNumber--overall">
+            <div
+              className="RaceEntry__raceNumber RaceEntry__raceNumber--overall"
+              title="Position overall"
+            >
               {positionOverall}
             </div>
-            <div className="RaceEntry__raceNumber RaceEntry__raceNumber--inClass">
+            <div
+              className="RaceEntry__raceNumber RaceEntry__raceNumber--inClass"
+              title="Position in class"
+            >
               {positionInClass}
             </div>
           </div>
