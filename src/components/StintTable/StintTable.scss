@@ -1,0 +1,34 @@
+@import '../../styles/base';
+
+.StintTable__header {
+  text-align: center;
+}
+
+.PitStopTable__title {
+  @include ms-5;
+}
+
+.StintTable__table {
+  width: 100%;
+  margin: 0 auto;
+  table-layout: auto;
+  text-align: center;
+}
+
+.StintTable__cell--data {
+  font-size: $ms-7-size;
+
+  @include enhanceForMedia(tablets) {
+    font-size: inherit;
+  }
+}
+
+.StintTable__cell--heading {
+  padding: 0 0.3rem;
+  font-size: $ms-8-size;
+  @include tableBorder;
+
+  @include enhanceForMedia(tablets) {
+    font-size: $ms-7-size;
+  }
+}

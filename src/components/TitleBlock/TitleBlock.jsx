@@ -8,11 +8,13 @@ export default function TitleBlock(props) {
   let entryBlock;
 
   if (entryTitle) {
+    /* eslint-disable max-len */
     entryBlock = (
       <h2 className="TitleBlock__banner TitleBlock__banner--normal TitleBlock__banner--entry">
         {entryTitle}
       </h2>
     );
+    /* eslint-disable max-len */
   }
 
   return (

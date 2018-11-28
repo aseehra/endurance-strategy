@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import DriverComparsionTable from '../../components/DriverComparisonTable';
 import EntryTable from '../../components/EntryTable';
 import PitStopTable from '../../components/PitStopTable';
+import StintData from '../StintData';
 import { getStatistics } from '../../reducers';
 import { fetchStatistics as fetchStatisticsAction } from '../../actions/statistics';
 
@@ -18,7 +19,7 @@ class EntryDetails extends React.Component {
   }
 
   render() {
-    const { statistics } = this.props;
+    const { entryId, statistics } = this.props;
     if (!statistics) {
       return null;
     }
@@ -27,6 +28,7 @@ class EntryDetails extends React.Component {
         <EntryTable {...statistics} />
         <DriverComparsionTable {...statistics} />
         <PitStopTable {...statistics} />
+        <StintData entryId={entryId} />
       </div>
     );
   }
