@@ -9,10 +9,12 @@ import PageTitle from '../PageTitle';
 import RaceList from '../RaceList';
 import TopNav from '../../components/TopNav';
 import { fetchRaces as fetchRacesAction } from '../../actions/races';
+import { deserializeOnboardingCookies } from '../../actions/ux';
 
 class EnduranceStrategy extends React.Component {
   componentDidMount() {
-    const { fetchRaces } = this.props;
+    const { checkOnboarding, fetchRaces } = this.props;
+    checkOnboarding();
     fetchRaces();
   }
 
@@ -40,10 +42,12 @@ class EnduranceStrategy extends React.Component {
 
 EnduranceStrategy.propTypes = {
   fetchRaces: PropTypes.func.isRequired,
+  checkOnboarding: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {
   fetchRaces: fetchRacesAction,
+  checkOnboarding: deserializeOnboardingCookies,
 };
 
 export default connect(

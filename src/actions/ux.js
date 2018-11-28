@@ -1,3 +1,5 @@
+import Cookies from 'universal-cookie';
+
 import { SET_MAIN_ONBOARDING_SEEN } from './types';
 
 const setMainOnboardingSeenSync = seen => ({
@@ -5,8 +7,19 @@ const setMainOnboardingSeenSync = seen => ({
   seen,
 });
 
-// eslint-disable-next-line import/prefer-default-export
+const ONBOARDING_COOKIE_NAME = 'onboarding_seen';
+
 export const setMainOnboardingSeen = seen => (dispatch) => {
   dispatch(setMainOnboardingSeenSync(seen));
-  // TODO: set a cookie
+
+  const cookies = new Cookies();
+  cookies.set(ONBOARDING_COOKIE_NAME, { main: true });
+};
+
+export const deserializeOnboardingCookies = () => (dispatch) => {
+  const cookies = new Cookies();
+  const cookie = cookies.get(ONBOARDING_COOKIE_NAME);
+  if (cookie) {
+    dispatch(setMainOnboardingSeenSync(cookie.main));
+  }
 };
