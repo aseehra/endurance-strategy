@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import './TopNav.scss';
 import FilterSearch from '../../containers/FilterSearch';
+import Logo from '../Logo';
 
 export default function TopNav(props) {
   const { history, match } = props;
@@ -9,7 +11,10 @@ export default function TopNav(props) {
 
   return (
     <nav className="TopNav">
-      <FilterSearch history={history} raceId={raceId} />
+      <Logo className="TopNav__left" />
+      <FilterSearch history={history} raceId={raceId} className="TopNav__center" />
+      {/* A fake element for centering purposes */}
+      <Logo className="TopNav__right" />
     </nav>
   );
 }

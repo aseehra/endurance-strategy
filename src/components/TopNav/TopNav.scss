@@ -1,0 +1,21 @@
+@import '../../styles/base';
+.TopNav {
+  display: flex;
+  flex: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0 0 0.2rem 0.2rem;
+  padding: 0.5rem;
+  background: change-color($c-blue, $alpha: 0.3);
+}
+
+.TopNav__center {
+  flex-basis: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.TopNav__right {
+  visibility: hidden;
+}

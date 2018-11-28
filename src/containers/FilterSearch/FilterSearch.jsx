@@ -27,15 +27,16 @@ class FilterSearch extends React.Component {
   }
 
   render() {
-    const { searchValue } = this.props;
+    const { className, searchValue } = this.props;
     return (
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit} className={`FilterSearch__form ${className}`}>
         <input
           type="search"
           placeholder="Search"
           ref={this.searchInput}
           onChange={this.onChange}
           value={searchValue}
+          className="FilterSearch__input"
         />
       </form>
     );
@@ -47,6 +48,11 @@ FilterSearch.propTypes = {
   searchValue: PropTypes.string.isRequired,
   raceId: PropTypes.string.isRequired,
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
+  className: PropTypes.string,
+};
+
+FilterSearch.defaultProps = {
+  className: '',
 };
 
 const mapDispatchToProps = {
