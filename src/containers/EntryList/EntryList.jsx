@@ -18,17 +18,23 @@ import {
 class EntryList extends React.Component {
   componentDidMount() {
     const {
-      entries,
-      fetchRaceEntries,
-      raceId,
-      queryParams,
-      setSearchFilter,
+      entries, fetchRaceEntries, raceId, urlQuery, setSearchFilter,
     } = this.props;
     if (!entries) {
       fetchRaceEntries(raceId);
     }
 
+    const queryParams = queryString.parse(urlQuery);
     setSearchFilter(queryParams.search || '');
+  }
+
+  componentDidUpdate(prevProps) {
+    const { urlQuery, setSearchFilter } = this.props;
+    const { urlQuery: prevUrlQuery } = prevProps;
+
+    if (urlQuery !== prevUrlQuery) {
+      setSearchFilter(queryString.parse(urlQuery).search || '');
+    }
   }
 
   componentWillUnmount() {
@@ -41,7 +47,6 @@ class EntryList extends React.Component {
       entries, entryFilter, isLoading, raceId,
     } = this.props;
     if (isLoading || !entries) {
-      // TODO: loading spinner
       return null;
     }
 
@@ -71,12 +76,12 @@ EntryList.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   entryFilter: PropTypes.string.isRequired,
   setSearchFilter: PropTypes.func.isRequired,
-  queryParams: PropTypes.shape({ search: PropTypes.string }),
+  urlQuery: PropTypes.string,
 };
 
 EntryList.defaultProps = {
   entries: null,
-  queryParams: {},
+  urlQuery: '',
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -88,7 +93,7 @@ const mapStateToProps = (state, ownProps) => {
     entries: getRaceEntries(state)[raceId],
     isLoading: getEntriesLoading(state),
     entryFilter: getRaceEntriesFilter(state),
-    queryParams: queryString.parse(search),
+    urlQuery: search,
   };
 };
 
