@@ -5,18 +5,14 @@ import { connect } from 'react-redux';
 import OnboardingModal from '../../components/OnboardingModal';
 import { setMainOnboardingSeen } from '../../actions/ux';
 
-class MainOnboarding extends React.Component {
-  componentWillUnmount() {}
-
-  render() {
-    const { setOnboardingSeen } = this.props;
-    return (
-      <OnboardingModal onDismiss={() => setOnboardingSeen(true)}>
-        <p>Endurance Strategy Reporter provides analysis of a sportscar race.</p>
-        <p>To get started, click on a race!</p>
-      </OnboardingModal>
-    );
-  }
+function MainOnboarding(props) {
+  const { setOnboardingSeen } = props;
+  return (
+    <OnboardingModal onDismiss={() => setOnboardingSeen(true)}>
+      <p>Endurance Strategy Reporter provides analysis of a sportscar race.</p>
+      <p>To get started, click on a race!</p>
+    </OnboardingModal>
+  );
 }
 
 MainOnboarding.propTypes = {

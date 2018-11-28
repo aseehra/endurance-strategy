@@ -2,34 +2,24 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import './OnboardingModal.scss';
+import Card from '../Card';
 
-export default class OnboardingModal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onKeyDown = this.onKeyDown.bind(this);
-  }
-
-  onKeyDown(e) {
-    const { onDismiss } = this.props;
-    if (['Escape', 'Enter', ' '].includes(e.key)) {
-      onDismiss();
-    }
-  }
-
-  render() {
-    const { children, onDismiss } = this.props;
-    return (
-      <section
-        className="OnboardingModal"
-        onClick={() => onDismiss()}
-        onKeyDown={this.onKeyDown}
-        tabIndex="0"
-      >
+export default function OnboardingModal(props) {
+  const { children, onDismiss } = props;
+  return (
+    <section className="OnboardingModal">
+      <Card className="OnBoardingModal__card">
         {children}
-        <button type="button">Dismiss</button>
-      </section>
-    );
-  }
+        <button
+          type="button"
+          className="OnBoardingModal__button"
+          onClick={() => onDismiss()}
+        >
+          Continue
+        </button>
+      </Card>
+    </section>
+  );
 }
 
 OnboardingModal.propTypes = {
