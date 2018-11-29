@@ -1,0 +1,15 @@
+@import '../../styles/base';
+
+.NotFound {
+  text-align: center;
+}
+
+.NotFound__header {
+  @include ms-4;
+  margin-top: 1rem;
+}
+
+.NotFound__link {
+  display: block;
+  margin-top: 1rem;
+}
