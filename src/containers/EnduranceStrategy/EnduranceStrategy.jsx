@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import EntryDetails from '../EntryDetails';
 import EntryList from '../EntryList';
+import NotFound from '../../components/NotFound';
 import PageTitle from '../PageTitle';
 import RaceList from '../RaceList';
 import TopNav from '../../components/TopNav';
@@ -31,6 +32,7 @@ class EnduranceStrategy extends React.Component {
             <Switch>
               <Route path="/race/:raceId/entry/:entryId" component={EntryDetails} />
               <Route path="/race/:raceId" component={EntryList} />
+              <Route path="/404" component={NotFound} />
               <Route path="/" component={RaceList} />
             </Switch>
           </main>

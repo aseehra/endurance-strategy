@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import './EntryDetails.scss';
 import DriverComparsionTable from '../../components/DriverComparisonTable';
@@ -22,8 +23,7 @@ class EntryDetails extends React.Component {
   render() {
     const { entryId, error, statistics } = this.props;
     if (error) {
-      // TODO: real error handling
-      return error.message;
+      return <Redirect to="/404" />;
     }
 
     if (!statistics) {

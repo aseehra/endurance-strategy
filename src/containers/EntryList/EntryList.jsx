@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import './EntryList.scss';
 import RaceEntry from '../../components/RaceEntry/RaceEntry';
@@ -50,8 +51,7 @@ class EntryList extends React.Component {
     } = this.props;
 
     if (error) {
-      // TODO: Redirect here
-      return error.message;
+      return <Redirect to="/404" />;
     }
 
     if (isLoading || !entries) {
