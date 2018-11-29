@@ -34,7 +34,7 @@ export const fetchStatistics = entryId => (dispatch) => {
     .then(normalizeErrors)
     .then(res => res.json())
     .then(data => dispatch(fetchStatisticsSuccess(data)))
-    .catch(error => dispatch(fetchStatisticsFailure(error)));
+    .catch(error => dispatch(fetchStatisticsFailure(entryId, error)));
 };
 
 const fetchStintsStart = entryId => ({
@@ -61,5 +61,5 @@ export const fetchStints = entryId => (dispatch) => {
     .then(normalizeErrors)
     .then(res => res.json())
     .then(data => dispatch(fetchStintsSuccess(data)))
-    .catch(error => dispatch(fetchStintsFailure(error)));
+    .catch(error => dispatch(fetchStintsFailure(entryId, error)));
 };

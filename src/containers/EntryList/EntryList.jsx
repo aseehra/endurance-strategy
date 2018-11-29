@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import './EntryList.scss';
 import RaceEntry from '../../components/RaceEntry/RaceEntry';
@@ -13,6 +14,7 @@ import {
 import {
   getEntriesLoading,
   getRaceEntries,
+  getRaceEntriesError,
   getRaceEntriesFilter,
 } from '../../reducers';
 
@@ -45,8 +47,13 @@ class EntryList extends React.Component {
 
   render() {
     const {
-      entries, entryFilter, isLoading, raceId,
+      entries, entryFilter, error, isLoading, raceId,
     } = this.props;
+
+    if (error) {
+      return <Redirect to="/404" />;
+    }
+
     if (isLoading || !entries) {
       return null;
     }
@@ -78,11 +85,13 @@ EntryList.propTypes = {
   entryFilter: PropTypes.string.isRequired,
   setSearchFilter: PropTypes.func.isRequired,
   urlQuery: PropTypes.string,
+  error: PropTypes.instanceOf(Error),
 };
 
 EntryList.defaultProps = {
   entries: null,
   urlQuery: '',
+  error: null,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -95,6 +104,7 @@ const mapStateToProps = (state, ownProps) => {
     isLoading: getEntriesLoading(state),
     entryFilter: getRaceEntriesFilter(state),
     urlQuery: search,
+    error: getRaceEntriesError(state),
   };
 };
 

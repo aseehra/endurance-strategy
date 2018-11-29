@@ -17,19 +17,33 @@ export const getRaceEntry = state => racesSelectors.getRaceEntry(state.races);
 export const getRacesLoading = state => racesSelectors.getRacesLoading(state.races);
 export const getEntriesLoading = state => racesSelectors.getEntriesLoading(state.races);
 export const getRaceEntriesFilter = state => racesSelectors.getFilter(state.races);
+
+// prettier-ignore
+export const getRaceEntriesError = state => racesSelectors.getRaceEntriesError(
+  state.races,
+);
+
 // prettier-ignore
 export const getStatisticsLoading = state => statisticsSelectors.getLoading(
   state.statistics,
 );
+
+// prettier-ignore
+export const getStatisticsError = state => statisticsSelectors.getError(
+  state.statistics,
+);
+
 // prettier-ignore
 export const getStatistics = state => statisticsSelectors.getStatistics(
   state.statistics,
 );
 export const getStints = state => statisticsSelectors.getStints(state.statistics);
+
 // prettier-ignore
 export const getMainOnboardingSeen = state => uxSelectors.getMainOnboardingSeen(
   state.ux,
 );
+
 // prettier-ignore
 export const getRaceOnboardingSeen = state => uxSelectors.getRaceOnboardingSeen(
   state.ux,

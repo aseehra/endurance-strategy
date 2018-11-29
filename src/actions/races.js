@@ -58,7 +58,9 @@ export const fetchRaceEntries = id => (dispatch) => {
     .then(normalizeErrors)
     .then(res => res.json())
     .then(data => dispatch(fetchRaceEntriesSuccess(data)))
-    .catch(error => dispatch(fetchRaceEntriesFailure(error)));
+    .catch((error) => {
+      dispatch(fetchRaceEntriesFailure(error));
+    });
 };
 
 export const updateRaceEntryFilter = filter => ({

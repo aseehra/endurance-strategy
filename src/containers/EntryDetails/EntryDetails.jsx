@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import './EntryDetails.scss';
 import DriverComparsionTable from '../../components/DriverComparisonTable';
 import EntryTable from '../../components/EntryTable';
 import PitStopTable from '../../components/PitStopTable';
 import StintData from '../StintData';
-import { getStatistics } from '../../reducers';
+import { getStatistics, getStatisticsError } from '../../reducers';
 import { fetchStatistics as fetchStatisticsAction } from '../../actions/statistics';
 
 class EntryDetails extends React.Component {
@@ -20,7 +21,11 @@ class EntryDetails extends React.Component {
   }
 
   render() {
-    const { entryId, statistics } = this.props;
+    const { entryId, error, statistics } = this.props;
+    if (error) {
+      return <Redirect to="/404" />;
+    }
+
     if (!statistics) {
       return null;
     }
@@ -46,10 +51,12 @@ EntryDetails.propTypes = {
       driverName: PropTypes.string,
     }),
   }),
+  error: PropTypes.instanceOf(Error),
 };
 
 EntryDetails.defaultProps = {
   statistics: null,
+  error: null,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -57,6 +64,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     entryId,
     statistics: getStatistics(state)(entryId),
+    error: getStatisticsError(state),
   };
 };
 
