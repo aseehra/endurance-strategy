@@ -3,6 +3,7 @@ import queryString from 'query-string';
 import React from 'react';
 import { connect } from 'react-redux';
 
+import './EntryList.scss';
 import RaceEntry from '../../components/RaceEntry/RaceEntry';
 import {
   fetchRaces as fetchRacesAction,

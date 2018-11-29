@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
+import './EntryDetails.scss';
 import DriverComparsionTable from '../../components/DriverComparisonTable';
 import EntryTable from '../../components/EntryTable';
 import PitStopTable from '../../components/PitStopTable';

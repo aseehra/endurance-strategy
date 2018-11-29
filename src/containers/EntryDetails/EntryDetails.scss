@@ -1,0 +1,17 @@
+@import '../../styles/base';
+
+.EntryDetails {
+  display: flex;
+  flex-flow: column nowrap;
+
+  @include enhanceForMedia(desktop) {
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+
+    & > * {
+      flex: 1 0 50rem;
+      margin: 0 1.5rem;
+    }
+  }
+}
