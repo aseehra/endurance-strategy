@@ -25,7 +25,7 @@ class PageTitle extends React.Component {
       : 'Endurance Strategy Reporter';
 
     let entryTitle;
-    if (entries && entryId !== null) {
+    if (entries && entryId !== null && entries[entryId]) {
       const { carNumber, manufacturer } = entries[entryId];
       entryTitle = `#${carNumber} – ${manufacturer}`;
     }

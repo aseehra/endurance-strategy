@@ -4,8 +4,8 @@
   text-align: center;
 }
 
-.PitStopTable__title {
-  @include ms-5;
+.StintTable__title {
+  @include ms-5();
 }
 
 .StintTable__table {

@@ -16,7 +16,7 @@ export default function StintTable(props) {
       <td className="StintTable__cell StintTable__cell--data">
         <TimeInterval time={stint.averageLapTime} />
       </td>
-      <td className="StintTable__cell StintTable_cell--data">
+      <td className="StintTable__cell StintTable__cell--data">
         <TimeInterval time={stint.fastestLapTime} />
       </td>
     </tr>
