@@ -8,7 +8,7 @@ export default function Logo(props) {
   const { className } = props;
   return (
     <Link to="/" className={`unadorned-link ${className}`}>
-      <div className="Logo">ERS</div>
+      <div className="Logo">ESR</div>
     </Link>
   );
 }
