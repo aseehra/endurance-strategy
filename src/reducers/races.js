@@ -13,7 +13,8 @@ const defaultState = {
   entries: {},
   racesLoading: false,
   entriesLoading: false,
-  error: null,
+  racesError: null,
+  entriesError: null,
   filter: '',
 };
 
@@ -22,7 +23,7 @@ export default function reducer(state = defaultState, action) {
     return {
       ...state,
       racesLoading: true,
-      error: null,
+      racesError: null,
     };
   }
 
@@ -35,7 +36,7 @@ export default function reducer(state = defaultState, action) {
         return acc;
       }, {}),
       racesLoading: false,
-      error: null,
+      racesError: null,
     };
   }
 
@@ -44,7 +45,7 @@ export default function reducer(state = defaultState, action) {
     return {
       ...state,
       racesLoading: false,
-      error,
+      racesError: error,
     };
   }
 
@@ -52,7 +53,7 @@ export default function reducer(state = defaultState, action) {
     return {
       ...state,
       entriesLoading: true,
-      error: null,
+      entriesError: null,
     };
   }
 
@@ -61,7 +62,7 @@ export default function reducer(state = defaultState, action) {
     return {
       ...state,
       entriesLoading: false,
-      error,
+      entriesError: error,
     };
   }
 
@@ -70,7 +71,7 @@ export default function reducer(state = defaultState, action) {
     return {
       ...state,
       entriesLoading: false,
-      error: null,
+      entriesError: null,
       entries: {
         ...state.entries,
         [raceId]: entries.reduce((acc, entry) => {
@@ -99,4 +100,5 @@ export const selectors = {
   getRacesLoading: state => state.racesLoading,
   getEntriesLoading: state => state.entriesLoading,
   getFilter: state => state.filter,
+  getRaceEntriesError: state => state.entriesError,
 };

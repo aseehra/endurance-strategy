@@ -13,6 +13,7 @@ import {
 import {
   getEntriesLoading,
   getRaceEntries,
+  getRaceEntriesError,
   getRaceEntriesFilter,
 } from '../../reducers';
 
@@ -45,8 +46,14 @@ class EntryList extends React.Component {
 
   render() {
     const {
-      entries, entryFilter, isLoading, raceId,
+      entries, entryFilter, error, isLoading, raceId,
     } = this.props;
+
+    if (error) {
+      // TODO: Redirect here
+      return error.message;
+    }
+
     if (isLoading || !entries) {
       return null;
     }
@@ -95,6 +102,7 @@ const mapStateToProps = (state, ownProps) => {
     isLoading: getEntriesLoading(state),
     entryFilter: getRaceEntriesFilter(state),
     urlQuery: search,
+    error: getRaceEntriesError(state),
   };
 };
 

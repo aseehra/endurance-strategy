@@ -7,7 +7,7 @@ import DriverComparsionTable from '../../components/DriverComparisonTable';
 import EntryTable from '../../components/EntryTable';
 import PitStopTable from '../../components/PitStopTable';
 import StintData from '../StintData';
-import { getStatistics } from '../../reducers';
+import { getStatistics, getStatisticsError } from '../../reducers';
 import { fetchStatistics as fetchStatisticsAction } from '../../actions/statistics';
 
 class EntryDetails extends React.Component {
@@ -20,7 +20,12 @@ class EntryDetails extends React.Component {
   }
 
   render() {
-    const { entryId, statistics } = this.props;
+    const { entryId, error, statistics } = this.props;
+    if (error) {
+      // TODO: real error handling
+      return error.message;
+    }
+
     if (!statistics) {
       return null;
     }
@@ -57,6 +62,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     entryId,
     statistics: getStatistics(state)(entryId),
+    error: getStatisticsError(state),
   };
 };
 

@@ -21,5 +21,6 @@ export class ApiError extends Error {
     }
 
     this.message = error.message;
+    this.code = error.status;
   }
 }

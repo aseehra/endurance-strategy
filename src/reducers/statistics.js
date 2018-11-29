@@ -21,6 +21,7 @@ export default function reducer(state = defaultState, action) {
     const { entryId } = action;
     return {
       ...state,
+      error: null,
       loading: { ...state.loading, [entryId]: true },
     };
   }
@@ -34,6 +35,7 @@ export default function reducer(state = defaultState, action) {
         ...state.statistics,
         [entryId]: data,
       },
+      error: null,
       loading,
     };
   }
@@ -52,6 +54,7 @@ export default function reducer(state = defaultState, action) {
     const { entryId } = action;
     return {
       ...state,
+      error: null,
       loading: { ...state.loading, [entryId]: true },
     };
   }
@@ -72,6 +75,7 @@ export default function reducer(state = defaultState, action) {
     return {
       ...state,
       loading,
+      error: null,
       stints: { ...state.stints, [entryId]: stints },
     };
   }
@@ -83,4 +87,5 @@ export const selectors = {
   getLoading: state => entryId => state.loading[entryId],
   getStatistics: state => entryId => state.statistics[entryId],
   getStints: state => entryId => state.stints[entryId],
+  getError: state => state.error,
 };
