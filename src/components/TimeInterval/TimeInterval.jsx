@@ -4,9 +4,9 @@ import React from 'react';
 export default function TimeInterval(props) {
   const { className, time } = props;
   const mins = Math.floor(time / 60);
-  const seconds = time % 60;
+  const seconds = (time % 60).toFixed(3).padStart(6, '0');
 
-  return <span className={className}>{`${mins}:${seconds.toFixed(3)}`}</span>;
+  return <span className={className}>{`${mins}:${seconds}`}</span>;
 }
 
 TimeInterval.propTypes = {
