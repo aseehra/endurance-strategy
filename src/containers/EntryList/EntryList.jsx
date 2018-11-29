@@ -85,11 +85,13 @@ EntryList.propTypes = {
   entryFilter: PropTypes.string.isRequired,
   setSearchFilter: PropTypes.func.isRequired,
   urlQuery: PropTypes.string,
+  error: PropTypes.instanceOf(Error),
 };
 
 EntryList.defaultProps = {
   entries: null,
   urlQuery: '',
+  error: null,
 };
 
 const mapStateToProps = (state, ownProps) => {

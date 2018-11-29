@@ -51,10 +51,12 @@ EntryDetails.propTypes = {
       driverName: PropTypes.string,
     }),
   }),
+  error: PropTypes.instanceOf(Error),
 };
 
 EntryDetails.defaultProps = {
   statistics: null,
+  error: null,
 };
 
 const mapStateToProps = (state, ownProps) => {
