@@ -72,6 +72,8 @@ for details.
 - [`entries.js`](https://github.com/aseehra/endurance-strategy-server/blob/master/src/db/entries.js)
   is where the statistical analyses are calculated. This includes deriving stint
   data from stored pit-stop information.
+- Data model:
+  ![Entity Relationship Diagram](./docs/data-model.png)
 
 ### Installation
 #### Requirements
