@@ -10,7 +10,7 @@ export default function TopNav(props) {
   const { raceId } = match.params;
 
   return (
-    <nav className="TopNav">
+    <nav role="navigation" className="TopNav">
       <Logo className="TopNav__left" />
       <FilterSearch history={history} raceId={raceId} className="TopNav__center" />
       {/* A fake element for centering purposes */}

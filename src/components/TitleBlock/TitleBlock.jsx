@@ -18,7 +18,7 @@ export default function TitleBlock(props) {
   }
 
   return (
-    <header className="TitleBlock">
+    <header role="banner" className="TitleBlock">
       <h1
         className={`TitleBlock__banner TitleBlock__banner--race ${
           entryTitle ? 'TitleBlock__banner--small' : 'TitleBlock__banner--normal'
