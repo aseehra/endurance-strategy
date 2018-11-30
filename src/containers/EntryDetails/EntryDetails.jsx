@@ -16,7 +16,7 @@ import {
 } from '../../reducers';
 import { fetchStatistics as fetchStatisticsAction } from '../../actions/statistics';
 
-class EntryDetails extends React.Component {
+export class EntryDetails extends React.Component {
   componentDidMount() {
     const { entryId, fetchStatistics, statistics } = this.props;
 
