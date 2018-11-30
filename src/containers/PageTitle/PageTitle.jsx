@@ -6,7 +6,12 @@ import { withRouter } from 'react-router-dom';
 
 import TitleBlock from '../../components/TitleBlock';
 import { fetchRaceEntries as fetchRaceEntriesAction } from '../../actions/races';
-import { getRace, getRaceEntries, getEntriesLoading } from '../../reducers';
+import {
+  getRace,
+  getRaceEntries,
+  getEntriesLoading,
+  getMainOnboardingSeen,
+} from '../../reducers';
 
 class PageTitle extends React.Component {
   componentDidMount() {
@@ -19,13 +24,15 @@ class PageTitle extends React.Component {
   }
 
   render() {
-    const { race, entries, entryId } = this.props;
-    const mainTitle = race
+    const {
+      race, entries, entryId, showOnboarding,
+    } = this.props;
+    const mainTitle = race && !showOnboarding
       ? `${race.name} – ${race.location}`
       : 'Endurance Strategy Reporter';
 
     let entryTitle;
-    if (entries && entryId !== null && entries[entryId]) {
+    if (!showOnboarding && entries && entryId !== null && entries[entryId]) {
       const { carNumber, manufacturer } = entries[entryId];
       entryTitle = `#${carNumber} – ${manufacturer}`;
     }
@@ -50,6 +57,7 @@ PageTitle.propTypes = {
       manufacturer: PropTypes.string.isRequired,
     }),
   ),
+  showOnboarding: PropTypes.bool.isRequired,
 };
 
 PageTitle.defaultProps = {
@@ -85,6 +93,7 @@ const mapStateToProps = (state, ownProps) => {
     entryId,
     entries,
     entriesLoading: getEntriesLoading(state),
+    showOnboarding: !getMainOnboardingSeen(state),
   };
 };
 

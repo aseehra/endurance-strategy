@@ -4,11 +4,16 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import './EntryDetails.scss';
+import About from '../About';
 import DriverComparsionTable from '../../components/DriverComparisonTable';
 import EntryTable from '../../components/EntryTable';
 import PitStopTable from '../../components/PitStopTable';
 import StintData from '../StintData';
-import { getStatistics, getStatisticsError } from '../../reducers';
+import {
+  getStatistics,
+  getMainOnboardingSeen,
+  getStatisticsError,
+} from '../../reducers';
 import { fetchStatistics as fetchStatisticsAction } from '../../actions/statistics';
 
 class EntryDetails extends React.Component {
@@ -21,7 +26,14 @@ class EntryDetails extends React.Component {
   }
 
   render() {
-    const { entryId, error, statistics } = this.props;
+    const {
+      entryId, error, showOnboarding, statistics,
+    } = this.props;
+
+    if (showOnboarding) {
+      return <About />;
+    }
+
     if (error) {
       return <Redirect to="/404" />;
     }
@@ -52,6 +64,7 @@ EntryDetails.propTypes = {
     }),
   }),
   error: PropTypes.instanceOf(Error),
+  showOnboarding: PropTypes.bool.isRequired,
 };
 
 EntryDetails.defaultProps = {
@@ -65,6 +78,7 @@ const mapStateToProps = (state, ownProps) => {
     entryId,
     statistics: getStatistics(state)(entryId),
     error: getStatisticsError(state),
+    showOnboarding: !getMainOnboardingSeen(state),
   };
 };
 

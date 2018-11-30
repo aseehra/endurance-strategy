@@ -2,25 +2,23 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import MainOnboarding from '../MainOnboarding';
+import About from '../About';
 import Race from '../../components/Race';
 import { getRacesLoading, getRaces, getMainOnboardingSeen } from '../../reducers';
 
 function RaceList(props) {
   const { isLoading, races, showOnboarding } = props;
 
+  if (showOnboarding) {
+    return <About />;
+  }
+
   if (isLoading) {
     return null;
   }
 
-  const onboarding = showOnboarding ? <MainOnboarding /> : null;
   const raceComponents = Object.keys(races).map(id => <Race {...races[id]} key={id} />);
-  return (
-    <div className="RaceList">
-      {onboarding}
-      {raceComponents}
-    </div>
-  );
+  return <div className="RaceList">{raceComponents}</div>;
 }
 
 RaceList.propTypes = {

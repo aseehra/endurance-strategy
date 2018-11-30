@@ -13,7 +13,7 @@ export const setMainOnboardingSeen = seen => (dispatch) => {
   dispatch(setMainOnboardingSeenSync(seen));
 
   const cookies = new Cookies();
-  cookies.set(ONBOARDING_COOKIE_NAME, { main: true });
+  cookies.set(ONBOARDING_COOKIE_NAME, { main: true }, { path: '/' });
 };
 
 export const deserializeOnboardingCookies = () => (dispatch) => {

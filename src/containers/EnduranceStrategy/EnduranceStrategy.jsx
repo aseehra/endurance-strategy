@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import About from '../About';
 import EntryDetails from '../EntryDetails';
 import EntryList from '../EntryList';
 import NotFound from '../../components/NotFound';
@@ -33,6 +34,7 @@ class EnduranceStrategy extends React.Component {
               <Route path="/race/:raceId/entry/:entryId" component={EntryDetails} />
               <Route path="/race/:raceId" component={EntryList} />
               <Route path="/404" component={NotFound} />
+              <Route path="/about" component={About} />
               <Route path="/" component={RaceList} />
             </Switch>
           </main>

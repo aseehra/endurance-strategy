@@ -1,0 +1,48 @@
+@import '../../styles/base';
+
+.AboutPage__sectionHeader {
+  @include ms-4;
+  margin: 1.5rem 0;
+}
+
+.AboutPage__featureHeader {
+  @include ms-6;
+  margin: 0.5rem 0;
+}
+
+.AboutPage__featureList {
+  display: flex;
+  flex-flow: column nowrap;
+
+  @include enhanceForMedia(tablets) {
+    flex-flow: row wrap;
+    justify-content: space-around;
+  }
+}
+
+.AboutPage__featureListItem {
+  max-width: 50rem;
+}
+
+.AboutPage__featureImage {
+  max-height: 20rem;
+  max-width: 100%;
+  object-fit: scale-down;
+  display: block;
+  margin: 1rem auto;
+}
+
+.AboutPage__button {
+  display: block;
+  border: 0.1em solid $c-green;
+  color: $c-green;
+  border-radius: 0.4rem;
+  padding: 0.5rem 1rem;
+  margin: 1rem auto;
+  @include ms-5;
+}
+
+.AboutPage__button:hover {
+  background: $c-green;
+  color: $c-foreground;
+}
