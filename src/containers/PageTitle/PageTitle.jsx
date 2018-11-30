@@ -80,12 +80,12 @@ const mapStateToProps = (state, ownProps) => {
   const parsedEntry = entryRE.exec(pathname);
 
   const raceId = parsedRace ? parsedRace[1] : null;
-  if (!raceId) {
-    return {};
+  let entryId;
+  let entries;
+  if (raceId) {
+    entryId = parsedEntry ? parseInt(parsedEntry[2], 10) : null;
+    entries = getRaceEntries(state)[raceId];
   }
-
-  const entryId = parsedEntry ? parseInt(parsedEntry[2], 10) : null;
-  const entries = getRaceEntries(state)[raceId];
 
   return {
     race: getRace(state)(raceId),
