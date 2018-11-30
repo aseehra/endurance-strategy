@@ -52,6 +52,27 @@ for details.
 - Jest & SuperTest
 - Node.js
 
+## Key components
+### Frontend
+- [`EnduranceStrategy`](https://github.com/aseehra/endurance-strategy/blob/master/src/containers/EnduranceStrategy/EnduranceStrategy.jsx):
+  the top level application component. It is responsible for driving the rest of
+  the application, and hosts the BrowserRouter.
+- [`EntryDetails.jsx`](https://github.com/aseehra/endurance-strategy/blob/master/src/containers/EntryDetails/EntryDetails.jsx):
+  drives the display of a race entry's statistics.
+- [`StintData.jsx`](https://github.com/aseehra/endurance-strategy/blob/master/src/containers/StintData/StintData.jsx):
+  fetches and formats stint data for display.
+- [`EntryList.jsx`]():
+  deserializes query strings, filters entries based on search criteria, and
+  fetches race entries from the API.
+- [`FilterSearch.jsx`](https://github.com/aseehra/endurance-strategy/blob/master/src/containers/FilterSearch/FilterSearch.jsx):
+  responsible for updating the search filter in the redux store. It will also
+  force a redirect if the user hits `<Enter>`.
+
+### Backend
+- [`entries.js`](https://github.com/aseehra/endurance-strategy-server/blob/master/src/db/entries.js)
+  is where the statistical analyses are calculated. This includes deriving stint
+  data from stored pit-stop information.
+
 ### Installation
 #### Requirements
 - [Endurance Strategy Reporter API server](https://github.com/aseehra/endurance-strategy-server)
@@ -78,24 +99,3 @@ $ heroku create <APP NAME> --buildpack mars/create-react-app
 ```bash
 $ heroku buildpacks:set mars/create-react-app
 ```
-
-## Key components
-### Frontend
-- [`EnduranceStrategy`](https://github.com/aseehra/endurance-strategy/blob/master/src/containers/EnduranceStrategy/EnduranceStrategy.jsx):
-  the top level application component. It is responsible for driving the rest of
-  the application, and hosts the BrowserRouter.
-- [`EntryDetails.jsx`](https://github.com/aseehra/endurance-strategy/blob/master/src/containers/EntryDetails/EntryDetails.jsx):
-  drives the display of a race entry's statistics.
-- [`StintData.jsx`](https://github.com/aseehra/endurance-strategy/blob/master/src/containers/StintData/StintData.jsx):
-  fetches and formats stint data for display.
-- [`EntryList.jsx`]():
-  deserializes query strings, filters entries based on search criteria, and
-  fetches race entries from the API.
-- [`FilterSearch.jsx`](https://github.com/aseehra/endurance-strategy/blob/master/src/containers/FilterSearch/FilterSearch.jsx):
-  responsible for updating the search filter in the redux store. It will also
-  force a redirect if the user hits `<Enter>`.
-
-### Backend
-- [`entries.js`](https://github.com/aseehra/endurance-strategy-server/blob/master/src/db/entries.js)
-  is where the statistical analyses are calculated. This includes deriving stint
-  data from stored pit-stop information.
