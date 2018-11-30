@@ -32,6 +32,7 @@ future iterations.
 ## Questions? Problems?
 If you encounter problems with ESR, don't hesitate to [raise an
 issue](https://github.com/aseehra/endurance-strategy/issues/new).
+
 ## Technologies
 ### Frontend
 - React
@@ -58,6 +59,20 @@ for details.
 $ yarn install
 $ yarn build
 $ REACT_APP_API_BASE_URL=<URL for your backend instance> serve -s build
+```
+
+#### Heroku
+
+This project uses React Create App, and as such you should use the
+[create-react-app-buildpack](https://github.com/mars/create-react-app-buildpack):
+
+- For a new heroku app:
+```bash
+$ heroku create <APP NAME> --buildpack mars/create-react-app
+```
+- For an existing app:
+```bash
+$ heroku buildpacks:set mars/create-react-app
 ```
 
 ## Key components
