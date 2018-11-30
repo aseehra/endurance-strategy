@@ -45,8 +45,6 @@
   easily find them in comparison dialogs
     - Local/Session Storage? IndexedDB?
 
-## Post-capstone extensions
-
 #### Lap charts
 - As a user, I want to see the entry's position over time so that I can
   determine the lap on a significant event concerning this entry occurred
