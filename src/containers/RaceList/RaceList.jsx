@@ -14,7 +14,7 @@ function RaceList(props) {
   }
 
   if (isLoading) {
-    return null;
+    return <div className="RaceList">Loading…</div>;
   }
 
   const raceComponents = Object.keys(races).map(id => <Race {...races[id]} key={id} />);
