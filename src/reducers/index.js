@@ -48,3 +48,5 @@ export const getMainOnboardingSeen = state => uxSelectors.getMainOnboardingSeen(
 export const getRaceOnboardingSeen = state => uxSelectors.getRaceOnboardingSeen(
   state.ux,
 );
+
+export const getIsMobile = state => uxSelectors.getIsMobile(state.ux);

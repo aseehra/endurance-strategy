@@ -1,6 +1,6 @@
 import Cookies from 'universal-cookie';
 
-import { SET_MAIN_ONBOARDING_SEEN } from './types';
+import { SET_IS_MOBILE, SET_MAIN_ONBOARDING_SEEN } from './types';
 
 const setMainOnboardingSeenSync = seen => ({
   type: SET_MAIN_ONBOARDING_SEEN,
@@ -22,4 +22,18 @@ export const deserializeOnboardingCookies = () => (dispatch) => {
   if (cookie) {
     dispatch(setMainOnboardingSeenSync(cookie.main));
   }
+};
+
+export const setIsMobile = isMobile => ({
+  type: SET_IS_MOBILE,
+  isMobile,
+});
+
+export const updateWindowWidth = windowWidth => (dispatch) => {
+  if (windowWidth < 600) {
+    dispatch(setIsMobile(true));
+    return;
+  }
+
+  dispatch(setIsMobile(false));
 };

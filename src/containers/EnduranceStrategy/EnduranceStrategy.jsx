@@ -12,13 +12,33 @@ import PageTitle from '../PageTitle';
 import RaceList from '../RaceList';
 import TopNav from '../../components/TopNav';
 import { fetchRaces as fetchRacesAction } from '../../actions/races';
-import { deserializeOnboardingCookies } from '../../actions/ux';
+import {
+  deserializeOnboardingCookies,
+  updateWindowWidth as updateWindowWidthAction,
+} from '../../actions/ux';
 
 class EnduranceStrategy extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleResize = this.handleResize.bind(this);
+  }
+
   componentDidMount() {
-    const { checkOnboarding, fetchRaces } = this.props;
+    const { checkOnboarding, fetchRaces, updateWindowWidth } = this.props;
     checkOnboarding();
     fetchRaces();
+    updateWindowWidth(window.innerWidth);
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize() {
+    const { updateWindowWidth } = this.props;
+    updateWindowWidth(window.innerWidth);
   }
 
   render() {
@@ -49,11 +69,13 @@ class EnduranceStrategy extends React.Component {
 EnduranceStrategy.propTypes = {
   fetchRaces: PropTypes.func.isRequired,
   checkOnboarding: PropTypes.func.isRequired,
+  updateWindowWidth: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {
   fetchRaces: fetchRacesAction,
   checkOnboarding: deserializeOnboardingCookies,
+  updateWindowWidth: updateWindowWidthAction,
 };
 
 export default connect(

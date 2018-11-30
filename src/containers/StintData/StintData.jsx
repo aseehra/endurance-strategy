@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import StintTable from '../../components/StintTable';
-import { getStatisticsLoading, getStints } from '../../reducers';
+import { getStatisticsLoading, getStints, getIsMobile } from '../../reducers';
 import { fetchStints as fetchStintsAction } from '../../actions/statistics';
 
 export class StintData extends React.Component {
@@ -17,12 +17,12 @@ export class StintData extends React.Component {
   }
 
   render() {
-    const { stints } = this.props;
+    const { isMobile, stints } = this.props;
     if (!stints) {
       return null;
     }
 
-    return <StintTable stints={stints} />;
+    return <StintTable stints={stints} isMobile={isMobile} />;
   }
 }
 
@@ -42,6 +42,7 @@ StintData.propTypes = {
     ),
   ]),
   loading: PropTypes.bool,
+  isMobile: PropTypes.bool.isRequired,
 };
 
 StintData.defaultProps = {
@@ -56,6 +57,7 @@ const mapStateToProps = (state, ownProps) => {
     entryId,
     stints: getStints(state)(entryId),
     loading: getStatisticsLoading(state)(entryId),
+    isMobile: getIsMobile(state),
   };
 };
 
