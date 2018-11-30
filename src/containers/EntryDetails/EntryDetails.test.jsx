@@ -56,9 +56,13 @@ describe('EntryDetails', () => {
       },
       driverData: [
         {
-          driverId: 25, driverName: 'Pipo', fastestLapTime: 95, averageLapTime: 98,
+          driverId: 25,
+          driverName: 'Pipo',
+          fastestLapTime: 95,
+          averageLapTime: 98,
         },
       ],
+      pitStops: [],
     };
 
     const wrapper = shallow(<EntryDetails {...{ ...baseProps, statistics }} />);

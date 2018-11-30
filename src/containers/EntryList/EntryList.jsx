@@ -18,7 +18,7 @@ import {
   getRaceEntriesFilter,
 } from '../../reducers';
 
-class EntryList extends React.Component {
+export class EntryList extends React.Component {
   componentDidMount() {
     const {
       entries, fetchRaceEntries, raceId, urlQuery, setSearchFilter,
@@ -65,7 +65,7 @@ class EntryList extends React.Component {
           || entry.driverName.toLowerCase().includes(entryFilterNormalized)
           || entry.carNumber.toString().includes(entryFilterNormalized),
       )
-      .sort((entryA, entryB) => entryA.carNumber - entryB.carNumber)
+      .sort((entryA, entryB) => entryA.positionOverall - entryB.positionOverall)
       .map(entry => <RaceEntry key={entry.id} {...entry} raceId={raceId} />);
     return <div className="EntryList">{entryComponents}</div>;
   }
