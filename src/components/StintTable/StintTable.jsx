@@ -3,16 +3,19 @@ import React from 'react';
 
 import './StintTable.scss';
 import Card from '../Card';
+import DriverName from '../DriverName';
 import TimeInterval from '../TimeInterval';
 
 export default function StintTable(props) {
-  const { stints } = props;
+  const { isMobile, stints } = props;
 
   const stintRows = stints.map(stint => (
     <tr key={stint.stintStart}>
       <td className="StintTable__cell StintTable__cell--data">{stint.stintStart}</td>
       <td className="StintTable__cell StintTable__cell--data">{stint.stintEnd}</td>
-      <td className="StintTable__cell StintTable__cell--data">{stint.driverName}</td>
+      <td className="StintTable__cell StintTable__cell--data">
+        <DriverName name={stint.driverName} isMobile={isMobile} />
+      </td>
       <td className="StintTable__cell StintTable__cell--data">
         <TimeInterval time={stint.averageLapTime} />
       </td>
@@ -60,4 +63,5 @@ StintTable.propTypes = {
       stintEnd: PropTypes.number,
     }),
   ).isRequired,
+  isMobile: PropTypes.bool.isRequired,
 };
