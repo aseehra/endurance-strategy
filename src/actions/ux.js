@@ -29,7 +29,7 @@ export const setIsMobile = isMobile => ({
   isMobile,
 });
 
-export const receiveWindowWidth = windowWidth => (dispatch) => {
+export const updateWindowWidth = windowWidth => (dispatch) => {
   if (windowWidth < 600) {
     dispatch(setIsMobile(true));
     return;
