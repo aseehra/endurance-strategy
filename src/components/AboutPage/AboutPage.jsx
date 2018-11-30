@@ -41,6 +41,18 @@ export default function AboutPage(props) {
           <li className="AboutPage__featureListItem">
             <header>
               <h3 className="AboutPage__featureHeader">
+                At a glance, see a car&apos;s position and class
+              </h3>
+            </header>
+            <img
+              src="/images/card-explanation.png"
+              alt="A blown up card with explantions of the contained fields"
+              className="AboutPage__featureImage"
+            />
+          </li>
+          <li className="AboutPage__featureListItem">
+            <header>
+              <h3 className="AboutPage__featureHeader">
                 Search for the team, driver or car number that you are interested in
               </h3>
             </header>

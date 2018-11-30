@@ -8,6 +8,10 @@
 .AboutPage__featureHeader {
   @include ms-6;
   margin: 0.5rem 0;
+
+  @include enhanceForMedia(tablets) {
+    text-align: center;
+  }
 }
 
 .AboutPage__featureList {
@@ -16,7 +20,7 @@
 
   @include enhanceForMedia(tablets) {
     flex-flow: row wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
   }
 }
 
