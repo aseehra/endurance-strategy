@@ -3,6 +3,8 @@
 Endurance Strategy Reporter brings detailed post-race analysis straight to your
 fingertips.
 
+![A group of ESR screenshots](./docs/screenshots.png)
+
 ## Try it out
 [Demo version](https://endurance-strategy.herokuapp.com/)
 
