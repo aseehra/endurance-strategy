@@ -29,7 +29,8 @@ information such as pit stop times, fuel & tire stints, along with average and b
 The eventual goal of this project is to connect to a live-timing service and
 provide real-time analysis of a race-in-progress. Additionally, improving the
 quality of the statistics provided (including adding lap charts) are left for
-future iterations.
+future iterations, along with giving users the ability to compare multiple
+entries against one another.
 
 ## Questions? Problems?
 If you encounter problems with ESR, don't hesitate to [raise an
