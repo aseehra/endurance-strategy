@@ -1,27 +1,75 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { HorizontalBar } from 'react-chartjs-2';
 
 import './DriverComparisonTable.scss';
 import Card from '../Card';
-import TimeInterval from '../TimeInterval';
 
 export default function DriverComparsionTable(props) {
   const { driverData } = props;
-  const driverRows = driverData
-    .sort((driverA, driverB) => driverA.fastestLapTime - driverB.fastestLapTime)
-    .map(driver => (
-      <tr key={driver.driverId}>
-        <td className="DriverComparisonTable__cell DriverComparisonTable__cell--data">
-          {driver.driverName}
-        </td>
-        <td className="DriverComparisonTable__cell DriverComparisonTable__cell--data">
-          <TimeInterval time={driver.fastestLapTime} />
-        </td>
-        <td className="DriverComparisonTable__cell DriverComparisonTable__cell--data">
-          <TimeInterval time={driver.averageLapTime} />
-        </td>
-      </tr>
-    ));
+  const colors = ['#0b6e4f', '#fa9f42', '#2b4162', '#721817'];
+
+  const options = {
+    legend: {
+      display: false,
+    },
+  };
+
+  const fastestData = {
+    labels: driverData.map(driver => driver.driverName),
+    datasets: [
+      {
+        label: 'Fastest lap time (s)',
+        data: driverData.map(driver => driver.fastestLapTime),
+        backgroundColor: colors,
+        hoverBackgroundColor: colors,
+      },
+    ],
+  };
+  const fastestOptions = {
+    ...options,
+    scales: {
+      xAxes: [
+        {
+          ticks: {
+            suggestedMin: Math.floor(driverData[0].fastestLapTime),
+          },
+          scaleLabel: {
+            display: true,
+            labelString: 'Fastest lap time',
+          },
+        },
+      ],
+    },
+  };
+
+  const averageData = {
+    labels: driverData.map(driver => driver.driverName),
+    datasets: [
+      {
+        label: 'Average lap time (s)',
+        data: driverData.map(driver => driver.averageLapTime),
+        backgroundColor: colors,
+        hoverBackgroundColor: colors,
+      },
+    ],
+  };
+  const averageOptions = {
+    ...options,
+    scales: {
+      xAxes: [
+        {
+          ticks: {
+            suggestedMin: Math.floor(driverData[0].averageLapTime),
+          },
+          scaleLabel: {
+            display: true,
+            labelString: 'Average lap time',
+          },
+        },
+      ],
+    },
+  };
 
   return (
     <section className="DriverComparisonTable">
@@ -29,24 +77,15 @@ export default function DriverComparsionTable(props) {
         <header className="DriverComparisonTable__header">
           <h3 className="DriverComparisonTable__title">Drivers</h3>
         </header>
-        <table className="DriverComparisonTable__table">
-          <thead>
-            <tr>
-              {/* eslint-disable max-len */}
-              <th className="DriverComparisonTable__cell DriverComparisonTable__cell--heading">
-                Driver Name
-              </th>
-              <th className="DriverComparisonTable__cell DriverComparisonTable__cell--heading">
-                Best Lap Time
-              </th>
-              <th className="DriverComparisonTable__cell DriverComparisonTable__cell--heading">
-                Average Lap Time
-              </th>
-              {/* eslint-enable max-len */}
-            </tr>
-          </thead>
-          <tbody>{driverRows}</tbody>
-        </table>
+
+        <div className="DriverComparisonTable__chart-wrapper">
+          <figure className="DriverComparisonTable__chart">
+            <HorizontalBar data={fastestData} options={fastestOptions} />
+          </figure>
+          <figure className="DriverComparisonTable__chart">
+            <HorizontalBar data={averageData} options={averageOptions} />
+          </figure>
+        </div>
       </Card>
     </section>
   );

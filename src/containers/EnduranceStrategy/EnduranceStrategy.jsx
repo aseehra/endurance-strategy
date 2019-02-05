@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { defaults } from 'react-chartjs-2';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -20,6 +21,8 @@ import {
 class EnduranceStrategy extends React.Component {
   constructor(props) {
     super(props);
+
+    defaults.global.defaultFontFamily = "'Lato', sans-serif";
 
     this.handleResize = this.handleResize.bind(this);
   }
