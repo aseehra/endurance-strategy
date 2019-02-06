@@ -44,6 +44,34 @@ export default function AboutPage() {
               View driver statistics
             </figcaption>
           </figure>
+          <figure className="AboutPage__carouselContent">
+            <img
+              src="/images/stint_card.png"
+              alt="Stint data for three drivers"
+              className="AboutPage__image"
+            />
+            <figcaption className="AboutPage__caption">
+              Compare driver stints
+            </figcaption>
+          </figure>
+          <figure className="AboutPage__carouselContent">
+            <img
+              src="/images/search.png"
+              alt="An example of searching"
+              className="AboutPage__image"
+            />
+            <figcaption className="AboutPage__caption">
+              Search for the team/driver/car number you&apos;re interested in
+            </figcaption>
+          </figure>
+          <figure>
+            <img
+              src="/images/card-explanation.png"
+              alt="Exploded-view of a race-entry card"
+              className="AboutPage__image"
+            />
+            <figcaption>Race entries are displayed as if on a timing screen</figcaption>
+          </figure>
         </Carousel>
       </section>
     </div>
