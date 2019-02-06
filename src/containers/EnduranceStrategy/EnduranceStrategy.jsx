@@ -60,7 +60,10 @@ class EnduranceStrategy extends React.Component {
           parameters, as because of the '/entry' string */}
           <Route exact path="/race/:raceId" component={TopNav} />
           <Route exact path="/race/:raceId/entry/:entryId" component={TopNav} />
-          <PageTitle />
+          <Switch>
+            <Route exact path="/" component={null} />
+            <Route component={PageTitle} />
+          </Switch>
           <main role="main">
             <Switch>
               <Route path="/race/:raceId/entry/:entryId" component={EntryDetails} />
