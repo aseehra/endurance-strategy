@@ -16,6 +16,7 @@ import { fetchRaces as fetchRacesAction } from '../../actions/races';
 import {
   deserializeOnboardingCookies,
   updateWindowWidth as updateWindowWidthAction,
+  setMainOnboardingSeen as setMainOnboardingSeenAction,
 } from '../../actions/ux';
 
 class EnduranceStrategy extends React.Component {
@@ -24,7 +25,8 @@ class EnduranceStrategy extends React.Component {
 
     defaults.global.defaultFontFamily = "'Lato', sans-serif";
 
-    this.handleResize = this.handleResize.bind(this);
+    this.onResize = this.onResize.bind(this);
+    this.onAboutClick = this.onAboutClick.bind(this);
   }
 
   componentDidMount() {
@@ -32,16 +34,22 @@ class EnduranceStrategy extends React.Component {
     checkOnboarding();
     fetchRaces();
     updateWindowWidth(window.innerWidth);
-    window.addEventListener('resize', this.handleResize);
+    window.addEventListener('resize', this.onResize);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener('resize', this.onResize);
   }
 
-  handleResize() {
+  onResize() {
     const { updateWindowWidth } = this.props;
     updateWindowWidth(window.innerWidth);
+  }
+
+  onAboutClick() {
+    const { setOnboardingSeen } = this.props;
+    setOnboardingSeen(false);
+    return true;
   }
 
   render() {
@@ -57,12 +65,12 @@ class EnduranceStrategy extends React.Component {
             <Switch>
               <Route path="/race/:raceId/entry/:entryId" component={EntryDetails} />
               <Route path="/race/:raceId" component={EntryList} />
+              <Route path="/races" component={RaceList} />
               <Route path="/404" component={NotFound} />
-              <Route path="/about" component={About} />
-              <Route path="/" component={RaceList} />
+              <Route path="/" component={About} />
             </Switch>
           </main>
-          <Footer />
+          <Footer onAboutClick={this.onAboutClick} />
         </div>
       </Router>
     );
@@ -73,12 +81,14 @@ EnduranceStrategy.propTypes = {
   fetchRaces: PropTypes.func.isRequired,
   checkOnboarding: PropTypes.func.isRequired,
   updateWindowWidth: PropTypes.func.isRequired,
+  setOnboardingSeen: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {
   fetchRaces: fetchRacesAction,
   checkOnboarding: deserializeOnboardingCookies,
   updateWindowWidth: updateWindowWidthAction,
+  setOnboardingSeen: setMainOnboardingSeenAction,
 };
 
 export default connect(

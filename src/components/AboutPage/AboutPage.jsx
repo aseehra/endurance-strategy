@@ -1,10 +1,9 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './AboutPage.scss';
 
-export default function AboutPage(props) {
-  const { onDismiss } = props;
+export default function AboutPage() {
   return (
     <div className="AboutPage">
       <section>
@@ -17,9 +16,9 @@ export default function AboutPage(props) {
           make, ESR aims makes it easy to look back and see how a team won (or lost) a
           race.
         </p>
-        <button className="AboutPage__button" type="button" onClick={onDismiss}>
+        <Link to="/races" className="AboutPage__button">
           Get started
-        </button>
+        </Link>
       </section>
       <section>
         <header>
@@ -75,14 +74,10 @@ export default function AboutPage(props) {
             />
           </li>
         </ul>
-        <button type="button" onClick={onDismiss} className="AboutPage__button">
+        <Link to="/races" className="AboutPage__button">
           Get started
-        </button>
+        </Link>
       </section>
     </div>
   );
 }
-
-AboutPage.propTypes = {
-  onDismiss: PropTypes.func.isRequired,
-};

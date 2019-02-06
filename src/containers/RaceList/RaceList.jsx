@@ -2,17 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import About from '../About';
 import Race from '../../components/Race';
-import { getRacesLoading, getRaces, getMainOnboardingSeen } from '../../reducers';
+import { getRacesLoading, getRaces } from '../../reducers';
 
 function RaceList(props) {
-  const { isLoading, races, showOnboarding } = props;
-
-  if (showOnboarding) {
-    return <About />;
-  }
-
+  const { isLoading, races } = props;
   if (isLoading) {
     return <div className="loading">Loading…</div>;
   }
@@ -30,14 +24,12 @@ RaceList.propTypes = {
     }),
   ).isRequired,
   isLoading: PropTypes.bool.isRequired,
-  showOnboarding: PropTypes.bool.isRequired,
 };
 
 export function mapStateToProps(state) {
   return {
     races: getRaces(state),
     isLoading: getRacesLoading(state),
-    showOnboarding: !getMainOnboardingSeen(state),
   };
 }
 

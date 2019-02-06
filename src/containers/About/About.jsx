@@ -1,52 +1,39 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import AboutPage from '../../components/AboutPage';
 import { setMainOnboardingSeen } from '../../actions/ux';
+import { getMainOnboardingSeen } from '../../reducers';
 
 export class About extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onDismiss = this.onDismiss.bind(this);
-  }
-
   componentWillUnmount() {
     const { setOnboardingSeen } = this.props;
     setOnboardingSeen(true);
   }
 
-  onDismiss() {
-    const { history, match, setOnboardingSeen } = this.props;
-    setOnboardingSeen(true);
-    if (match && match.path === '/about') {
-      history.push('/');
-    }
-  }
-
   render() {
-    return <AboutPage onDismiss={this.onDismiss} />;
+    const { showOnboarding } = this.props;
+    if (!showOnboarding) {
+      return <Redirect to="/races" />;
+    }
+
+    return <AboutPage />;
   }
 }
 
 About.propTypes = {
   setOnboardingSeen: PropTypes.func.isRequired,
-  history: PropTypes.shape({ push: PropTypes.func.isRequired }),
-  match: PropTypes.shape({ path: PropTypes.string.isRequired }),
-};
-
-About.defaultProps = {
-  history: null,
-  match: null,
+  showOnboarding: PropTypes.bool.isRequired,
 };
 
 const mapDispatchToProps = {
   setOnboardingSeen: setMainOnboardingSeen,
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  history: ownProps.history,
-  match: ownProps.match,
+const mapStateToProps = state => ({
+  showOnboarding: !getMainOnboardingSeen(state),
 });
 
 export default connect(

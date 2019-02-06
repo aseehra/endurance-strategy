@@ -1,14 +1,15 @@
+import propTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './Footer.scss';
 
-export default function Footer() {
+export default function Footer({ onAboutClick }) {
   return (
     <footer role="contentinfo" className="Footer">
       <hr className="Footer__line" />
       <div className="Footer--centered">
-        <Link className="Footer__link" to="/about">
+        <Link className="Footer__link" to="/" onClick={onAboutClick}>
           About
         </Link>
         <a
@@ -23,3 +24,11 @@ export default function Footer() {
     </footer>
   );
 }
+
+Footer.propTypes = {
+  onAboutClick: propTypes.func,
+};
+
+Footer.defaultProps = {
+  onAboutClick: () => true,
+};

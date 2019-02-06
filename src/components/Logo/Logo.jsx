@@ -7,7 +7,7 @@ import './Logo.scss';
 export default function Logo(props) {
   const { className } = props;
   return (
-    <Link to="/" className={`unadorned-link ${className}`}>
+    <Link to="/races" className={`unadorned-link ${className}`}>
       <div className="Logo">ESR</div>
     </Link>
   );
