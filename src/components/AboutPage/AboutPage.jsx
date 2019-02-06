@@ -2,81 +2,41 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './AboutPage.scss';
+import DriverComparisonTable from '../DriverComparisonTable';
+
+const demoData = [
+  {
+    driverName: 'Libbie Bruen',
+    averageLapTime: 96.345,
+    fastestLapTime: 94.223,
+  },
+  {
+    driverName: 'Ressie Eichmann',
+    averageLapTime: 96.127,
+    fastestLapTime: 94.108,
+  },
+  {
+    driverName: 'Bart Donnelly',
+    averageLapTime: 96.825,
+    fastestLapTime: 93.918,
+  },
+];
 
 export default function AboutPage() {
   return (
     <div className="AboutPage">
-      <section>
-        <header>
-          <h2 className="AboutPage__sectionHeader">About</h2>
-        </header>
-        <p className="AboutPage__para">
-          The Endurance Strategy Reporter brings detailed post-race analysis straight to
-          your fingertips. For those who are fascinated by the strategy calls that teams
-          make, ESR aims makes it easy to look back and see how a team won (or lost) a
-          race.
-        </p>
-        <Link to="/races" className="AboutPage__button">
+      <header className="AboutPage__titles">
+        <h1 className="AboutPage__title">Endurance Strategy Reporter</h1>
+        <h2 className="AboutPage__subtitle">Discover how a race was won or lost</h2>
+        <Link className="AboutPage__getStarted button" to="/races">
           Get started
         </Link>
-      </section>
+      </header>
       <section>
-        <header>
-          <h2 className="AboutPage__sectionHeader">Features</h2>
-        </header>
-        <ul className="AboutPage__featureList">
-          <li className="AboutPage__featureListItem">
-            <header>
-              <h3 className="AboutPage__featureHeader">
-                ESR stores archives of prior races&apos; live-timing data
-              </h3>
-            </header>
-            <img
-              src="/images/races.png"
-              alt="Example races"
-              className="AboutPage__featureImage"
-            />
-          </li>
-          <li className="AboutPage__featureListItem">
-            <header>
-              <h3 className="AboutPage__featureHeader">
-                At a glance, see a car&apos;s position and class
-              </h3>
-            </header>
-            <img
-              src="/images/card-explanation.png"
-              alt="A blown up card with explantions of the contained fields"
-              className="AboutPage__featureImage"
-            />
-          </li>
-          <li className="AboutPage__featureListItem">
-            <header>
-              <h3 className="AboutPage__featureHeader">
-                Search for the team, driver or car number that you are interested in
-              </h3>
-            </header>
-            <img
-              src="/images/search.png"
-              alt="An example search"
-              className="AboutPage__featureImage"
-            />
-          </li>
-          <li className="AboutPage__featureListItem">
-            <header>
-              <h3 className="AboutPage__featureHeader">
-                See driver and stint statistics, along with pit stop times
-              </h3>
-            </header>
-            <img
-              src="/images/stint_card.png"
-              alt="Example stint data"
-              className="AboutPage__featureImage"
-            />
-          </li>
-        </ul>
-        <Link to="/races" className="AboutPage__button">
-          Get started
-        </Link>
+        <figure className="AboutPage__carouselContent">
+          <DriverComparisonTable driverData={demoData} />
+          <figcaption className="AboutPage__caption">See driver statistics</figcaption>
+        </figure>
       </section>
     </div>
   );
