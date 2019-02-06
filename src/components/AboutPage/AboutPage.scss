@@ -16,20 +16,21 @@
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  margin-bottom: 3em;
   text-align: center;
 }
 
 .AboutPage__title {
-  @include ms-3;
+  @include ms-2;
 }
 
 .AboutPage__subtitle {
   @include ms-5;
-  margin-top: 0.5em;
+  margin-top: 1em;
 }
 
 .AboutPage__getStarted {
-  margin-top: 0.5em;
+  margin-top: 1em;
   background-color: $c-blue;
   color: $c-foreground;
 }

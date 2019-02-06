@@ -2,20 +2,24 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './AboutPage.scss';
+import Carousel from '../Carousel';
 import DriverComparisonTable from '../DriverComparisonTable';
 
 const demoData = [
   {
+    driverId: 0,
     driverName: 'Libbie Bruen',
     averageLapTime: 96.345,
     fastestLapTime: 94.223,
   },
   {
+    driverId: 1,
     driverName: 'Ressie Eichmann',
     averageLapTime: 96.127,
     fastestLapTime: 94.108,
   },
   {
+    driverId: 2,
     driverName: 'Bart Donnelly',
     averageLapTime: 96.825,
     fastestLapTime: 93.918,
@@ -33,10 +37,14 @@ export default function AboutPage() {
         </Link>
       </header>
       <section>
-        <figure className="AboutPage__carouselContent">
-          <DriverComparisonTable driverData={demoData} />
-          <figcaption className="AboutPage__caption">See driver statistics</figcaption>
-        </figure>
+        <Carousel>
+          <figure className="AboutPage__carouselContent">
+            <DriverComparisonTable driverData={demoData} />
+            <figcaption className="AboutPage__caption">
+              View driver statistics
+            </figcaption>
+          </figure>
+        </Carousel>
       </section>
     </div>
   );

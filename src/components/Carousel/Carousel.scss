@@ -1,0 +1,20 @@
+.Carousel__indicators {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.Carousel__dot {
+  height: 1rem;
+  width: 1rem;
+  margin: 0 0.1rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background-color: #666666;
+}
+
+.Carousel__dot--active {
+  background-color: #333333;
+}
