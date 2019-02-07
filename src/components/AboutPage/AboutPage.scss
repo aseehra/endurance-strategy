@@ -50,3 +50,19 @@
 .AboutPage__image {
   max-width: 100%;
 }
+
+.AboutPage__carousel {
+  @include enhanceForMedia(tablets) {
+    min-height: 40rem;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+  }
+}
+
+.AboutPage__carouselContent {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}

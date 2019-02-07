@@ -36,7 +36,7 @@ export default function AboutPage() {
           Get started
         </Link>
       </header>
-      <section>
+      <section className="AboutPage__carousel">
         <Carousel>
           <figure className="AboutPage__carouselContent">
             <DriverComparisonTable driverData={demoData} />
