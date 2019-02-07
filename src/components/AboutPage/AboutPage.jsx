@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import './AboutPage.scss';
 import Carousel from '../Carousel';
-import Card from '../Card';
 import DriverComparisonTable from '../DriverComparisonTable';
 
 const demoData = [
