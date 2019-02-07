@@ -55,26 +55,32 @@ class EnduranceStrategy extends React.Component {
   render() {
     return (
       <Router>
-        <div className="root">
-          {/* Unfortunatley, we cannot use path-to-regex's optional
+        <Switch>
+          <Route exact path="/" component={About} />
+          <Route
+            render={() => (
+              <div className="root">
+                {/* Unfortunatley, we cannot use path-to-regex's optional
           parameters, as because of the '/entry' string */}
-          <Route exact path="/race/:raceId" component={TopNav} />
-          <Route exact path="/race/:raceId/entry/:entryId" component={TopNav} />
-          <Switch>
-            <Route exact path="/" component={null} />
-            <Route component={PageTitle} />
-          </Switch>
-          <main role="main">
-            <Switch>
-              <Route path="/race/:raceId/entry/:entryId" component={EntryDetails} />
-              <Route path="/race/:raceId" component={EntryList} />
-              <Route path="/races" component={RaceList} />
-              <Route path="/404" component={NotFound} />
-              <Route path="/" component={About} />
-            </Switch>
-          </main>
-          <Footer onAboutClick={this.onAboutClick} />
-        </div>
+                <Route exact path="/race/:raceId" component={TopNav} />
+                <Route exact path="/race/:raceId/entry/:entryId" component={TopNav} />
+                <Route component={PageTitle} />
+                <main role="main">
+                  <Switch>
+                    <Route
+                      path="/race/:raceId/entry/:entryId"
+                      component={EntryDetails}
+                    />
+                    <Route path="/race/:raceId" component={EntryList} />
+                    <Route path="/races" component={RaceList} />
+                    <Route path="/404" component={NotFound} />
+                  </Switch>
+                </main>
+                <Footer onAboutClick={this.onAboutClick} />
+              </div>
+            )}
+          />
+        </Switch>
       </Router>
     );
   }
@@ -96,5 +102,5 @@ const mapDispatchToProps = {
 
 export default connect(
   null,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(EnduranceStrategy);

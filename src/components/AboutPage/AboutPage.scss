@@ -1,15 +1,36 @@
 @import '../../styles/base';
 
 .AboutPage {
+  min-height: 100vh;
+  min-width: 100%;
+  position: fixed;
+  top: 0;
+
+  background: url('/reynier-carl-685971-unsplash.jpg') no-repeat center center fixed;
+  background-size: cover;
+
+  @include enhanceForMedia(tablets) {
+    padding: 0 2em;
+  }
+}
+
+.AboutPage__content {
   display: grid;
   grid-template-columns: 1fr;
   grid-column-gap: 2rem;
-  margin-top: 3rem;
-  margin-bottom: 10rem;
+  max-width: 1280px;
+  min-height: 100vh;
+  margin: 0 auto 10rem;
+  padding: 3em 2em;
+
+  background: hsla(0, 0%, 100%, 0.85);
+  border-radius: 0.2rem;
 
   @include enhanceForMedia(tablets) {
     grid-template-columns: 1fr 1fr;
     margin-top: 15rem;
+    min-height: initial;
+    background: hsla(0, 0%, 100%, 0.9);
   }
 }
 
@@ -52,10 +73,11 @@
 }
 
 .AboutPage__carousel {
+  display: flex;
+  flex-flow: column nowrap;
+  min-height: 40rem;
+
   @include enhanceForMedia(tablets) {
-    min-height: 40rem;
-    display: flex;
-    flex-flow: column nowrap;
     justify-content: center;
   }
 }
