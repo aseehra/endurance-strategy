@@ -25,13 +25,11 @@ export class ComparisonModal extends React.Component {
     }
 
     return (
-      <div className="ComparisonModal">
-        <GridModal>
-          {Object.values(entries).map(entry => (
-            <div key={entry.id}>{entry.manufacturer}</div>
-          ))}
-        </GridModal>
-      </div>
+      <GridModal>
+        {Object.values(entries).map(entry => (
+          <div key={entry.id}>{entry.manufacturer}</div>
+        ))}
+      </GridModal>
     );
   }
 }
