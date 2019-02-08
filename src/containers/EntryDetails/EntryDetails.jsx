@@ -3,12 +3,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import './EntryDetails.scss';
 import About from '../About';
 import DriverComparsionTable from '../../components/DriverComparisonTable';
 import EntryTable from '../../components/EntryTable';
 import PitStopTable from '../../components/PitStopTable';
 import StintData from '../StintData';
+import TwoColumnGrid from '../../components/TwoColumnGrid';
 import {
   getStatistics,
   getMainOnboardingSeen,
@@ -43,10 +43,12 @@ export class EntryDetails extends React.Component {
     }
     return (
       <div className="EntryDetails">
-        <EntryTable {...statistics} />
-        <DriverComparsionTable {...statistics} />
-        <PitStopTable {...statistics} />
-        <StintData entryId={entryId} />
+        <TwoColumnGrid>
+          <EntryTable {...statistics} />
+          <DriverComparsionTable {...statistics} />
+          <PitStopTable {...statistics} />
+          <StintData entryId={entryId} />
+        </TwoColumnGrid>
       </div>
     );
   }
