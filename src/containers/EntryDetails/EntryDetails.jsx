@@ -25,7 +25,7 @@ export class EntryDetails extends React.Component {
   componentDidMount() {
     const { entryId, fetchStatistics, statistics } = this.props;
 
-    if (!statistics) {
+    if (!statistics[entryId]) {
       fetchStatistics(entryId);
     }
   }
@@ -45,9 +45,12 @@ export class EntryDetails extends React.Component {
       return <Redirect to="/404" />;
     }
 
-    if (!statistics) {
+    if (!statistics || !statistics[entryId]) {
       return null;
     }
+
+    const primaryStatistics = statistics[entryId];
+
     return (
       <div className="EntryDetails">
         <TwoColumnGrid>
@@ -56,9 +59,9 @@ export class EntryDetails extends React.Component {
             onClick={this.onComparisonButtonClick}
           />
           {showComparisonModal && <ComparisonModal raceId={raceId} />}
-          <EntryTable {...statistics} />
-          <DriverComparsionTable {...statistics} />
-          <PitStopTable {...statistics} />
+          <EntryTable {...primaryStatistics} />
+          <DriverComparsionTable {...primaryStatistics} />
+          <PitStopTable {...primaryStatistics} />
           <StintData entryId={entryId} />
         </TwoColumnGrid>
       </div>
@@ -91,7 +94,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     raceId,
     entryId,
-    statistics: getStatistics(state)(entryId),
+    statistics: getStatistics(state),
     error: getStatisticsError(state),
   };
 };

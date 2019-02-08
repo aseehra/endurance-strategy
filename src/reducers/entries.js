@@ -59,5 +59,5 @@ export const selectors = {
   getLoading: state => state.loading,
   getError: state => state.error,
   getEntries: state => state.entries,
-  getEntry: state => entryId => state.entries[entryId],
+  getEntry: state => entryId => state.entries && state.entries[entryId],
 };

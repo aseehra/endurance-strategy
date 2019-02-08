@@ -8,29 +8,26 @@ import { fetchStints as fetchStintsAction } from '../../actions/statistics';
 
 export class StintData extends React.Component {
   componentDidMount() {
-    const {
-      entryId, fetchStints, loading, stints,
-    } = this.props;
-    if (!stints && !loading) {
+    const { entryId, fetchStints, loading } = this.props;
+    if (!loading) {
       fetchStints(entryId);
     }
   }
 
   render() {
-    const { isMobile, stints } = this.props;
-    if (!stints) {
+    const { entryId, isMobile, stints } = this.props;
+    if (!stints[entryId]) {
       return null;
     }
 
-    return <StintTable stints={stints} isMobile={isMobile} />;
+    return <StintTable stints={stints[entryId]} isMobile={isMobile} />;
   }
 }
 
 StintData.propTypes = {
   entryId: PropTypes.string.isRequired,
   fetchStints: PropTypes.func.isRequired,
-  stints: PropTypes.oneOfType([
-    PropTypes.exact(null),
+  stints: PropTypes.objectOf(
     PropTypes.arrayOf(
       PropTypes.shape({
         fastestLapTime: PropTypes.number,
@@ -40,7 +37,7 @@ StintData.propTypes = {
         stintEnd: PropTypes.number,
       }),
     ),
-  ]),
+  ),
   loading: PropTypes.bool,
   isMobile: PropTypes.bool.isRequired,
 };
@@ -55,7 +52,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     entryId,
-    stints: getStints(state)(entryId),
+    stints: getStints(state),
     loading: getStatisticsLoading(state)(entryId),
     isMobile: getIsMobile(state),
   };
