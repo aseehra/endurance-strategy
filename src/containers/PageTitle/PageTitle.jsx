@@ -81,17 +81,15 @@ const mapStateToProps = (state, ownProps) => {
 
   const raceId = parsedRace ? parsedRace[1] : null;
   let entryId;
-  let entries;
   if (raceId) {
     entryId = parsedEntry ? parseInt(parsedEntry[2], 10) : null;
-    entries = getRaceEntries(state)[raceId];
   }
 
   return {
     race: getRace(state)(raceId),
     raceId,
     entryId,
-    entries,
+    entries: getRaceEntries(state),
     entriesLoading: getEntriesLoading(state),
     showOnboarding: !getMainOnboardingSeen(state),
   };

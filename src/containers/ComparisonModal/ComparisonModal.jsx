@@ -55,9 +55,9 @@ ComparisonModal.defaultProps = {
   entries: null,
 };
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = state => ({
   entriesLoading: getEntriesLoading(state),
-  entries: getRaceEntries(state)[ownProps.raceId],
+  entries: getRaceEntries(state),
 });
 
 const mapDispatchToProps = {
