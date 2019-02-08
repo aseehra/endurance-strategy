@@ -9,7 +9,7 @@ html * {
 }
 
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: $font;
   font-weight: 300;
   font-size: 1.5em;
   line-height: 1.6;
@@ -54,5 +54,6 @@ p {
   border-radius: 0.4rem;
   text-decoration: none;
   cursor: pointer;
+  font-family: $font;
   font-size: 1em;
 }

@@ -9,6 +9,8 @@ $ms-6-size: 1.5rem;
 $ms-7-size: 1.25rem;
 $ms-8-size: 1.0417rem;
 
+$font: 'Lato', sans-serif;
+
 @mixin ms-1 {
   font-size: $ms-1-size;
   letter-spacing: -0.1rem;

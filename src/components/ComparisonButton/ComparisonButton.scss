@@ -1,0 +1,21 @@
+@import '../../styles/base.scss';
+
+.ComparisonButton {
+  justify-self: center;
+  margin-top: 1rem;
+  background-color: $c-blue;
+  color: white;
+
+  @include enhanceForMedia(desktop) {
+    grid-column: span 2;
+  }
+}
+
+.ComparisonButton__icon {
+  margin-right: 1ex;
+  transition: transform 1s ease-in-out;
+}
+
+.ComparisonButton__icon--rotated {
+  transform: rotate(0.25turn);
+}

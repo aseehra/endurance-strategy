@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
+import ComparisonButton from '../../components/ComparisonButton';
 import DriverComparsionTable from '../../components/DriverComparisonTable';
 import EntryTable from '../../components/EntryTable';
 import PitStopTable from '../../components/PitStopTable';
@@ -12,6 +13,14 @@ import { getStatistics, getStatisticsError } from '../../reducers';
 import { fetchStatistics as fetchStatisticsAction } from '../../actions/statistics';
 
 export class EntryDetails extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { showComparisonModal: false };
+
+    this.onComparisonButtonClick = this.onComparisonButtonClick.bind(this);
+  }
+
   componentDidMount() {
     const { entryId, fetchStatistics, statistics } = this.props;
 
@@ -20,8 +29,14 @@ export class EntryDetails extends React.Component {
     }
   }
 
+  onComparisonButtonClick() {
+    const { showComparisonModal } = this.state;
+    this.setState({ showComparisonModal: !showComparisonModal });
+  }
+
   render() {
     const { entryId, error, statistics } = this.props;
+    const { showComparisonModal } = this.state;
 
     if (error) {
       return <Redirect to="/404" />;
@@ -33,6 +48,10 @@ export class EntryDetails extends React.Component {
     return (
       <div className="EntryDetails">
         <TwoColumnGrid>
+          <ComparisonButton
+            rotateIcon={showComparisonModal}
+            onClick={this.onComparisonButtonClick}
+          />
           <EntryTable {...statistics} />
           <DriverComparsionTable {...statistics} />
           <PitStopTable {...statistics} />
