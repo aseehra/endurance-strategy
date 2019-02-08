@@ -1,0 +1,7 @@
+@import '../../styles/base.scss';
+
+.GridModal {
+  @include enhanceForMedia(desktop) {
+    grid-column: span 2;
+  }
+}

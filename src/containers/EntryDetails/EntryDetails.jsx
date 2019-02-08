@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import ComparisonButton from '../../components/ComparisonButton';
+import ComparisonModal from '../ComparisonModal';
 import DriverComparsionTable from '../../components/DriverComparisonTable';
 import EntryTable from '../../components/EntryTable';
 import PitStopTable from '../../components/PitStopTable';
@@ -35,7 +36,9 @@ export class EntryDetails extends React.Component {
   }
 
   render() {
-    const { entryId, error, statistics } = this.props;
+    const {
+      entryId, error, raceId, statistics,
+    } = this.props;
     const { showComparisonModal } = this.state;
 
     if (error) {
@@ -52,6 +55,7 @@ export class EntryDetails extends React.Component {
             rotateIcon={showComparisonModal}
             onClick={this.onComparisonButtonClick}
           />
+          {showComparisonModal && <ComparisonModal raceId={raceId} />}
           <EntryTable {...statistics} />
           <DriverComparsionTable {...statistics} />
           <PitStopTable {...statistics} />
@@ -63,6 +67,7 @@ export class EntryDetails extends React.Component {
 }
 
 EntryDetails.propTypes = {
+  raceId: PropTypes.string.isRequired,
   entryId: PropTypes.string.isRequired,
   fetchStatistics: PropTypes.func.isRequired,
   statistics: PropTypes.shape({
@@ -82,8 +87,9 @@ EntryDetails.defaultProps = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const { entryId } = ownProps.match.params;
+  const { raceId, entryId } = ownProps.match.params;
   return {
+    raceId,
     entryId,
     statistics: getStatistics(state)(entryId),
     error: getStatisticsError(state),
