@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Redirect } from 'react-router-dom';
 
-import About from '../About';
 import DriverComparisonTable from '../../components/DriverComparisonTable';
 import EntryTable from '../../components/EntryTable';
 import PitStopTable from '../../components/PitStopTable';
@@ -25,13 +24,6 @@ describe('EntryDetails', () => {
     const redirect = wrapper.find(Redirect);
     expect(redirect).toHaveLength(1);
     expect(redirect.prop('to')).toEqual('/404');
-  });
-
-  it('should display onboarding', () => {
-    const wrapper = shallow(
-      <EntryDetails {...{ ...baseProps, showOnboarding: true }} />,
-    );
-    expect(wrapper.find(About)).toHaveLength(1);
   });
 
   it('should render nothing if statistics are undefined', () => {
