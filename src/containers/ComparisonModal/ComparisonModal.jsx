@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import GridModal from '../../components/GridModal';
+import ShortRaceEntry from '../../components/ShortRaceEntry';
 import { fetchRaceEntries as fetchRaceEntriesAction } from '../../actions/races';
 import { getRaceEntries, getEntriesLoading } from '../../reducers';
 
@@ -27,7 +28,7 @@ export class ComparisonModal extends React.Component {
     return (
       <GridModal>
         {Object.values(entries).map(entry => (
-          <div key={entry.id}>{entry.manufacturer}</div>
+          <ShortRaceEntry key={entry.id} entry={entry} />
         ))}
       </GridModal>
     );

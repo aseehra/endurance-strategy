@@ -1,0 +1,50 @@
+@import '../../styles/base.scss';
+
+.ShortRaceEntry {
+  max-width: 50em;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+}
+
+.ShortRaceEntry__button {
+  display: block;
+  width: 100%;
+  padding: 1em;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.ShortRaceEntry__container {
+  display: grid;
+  grid-template:
+    'number manufacturer class'
+    'number driver class'
+    / 3rem auto 3rem;
+}
+
+.ShortRaceEntry__carNumber,
+.ShortRaceEntry__carClass {
+  align-self: center;
+  color: $c-foreground;
+}
+
+.ShortRaceEntry__carNumber {
+  grid-area: number;
+  background-color: #2b2b2b;
+  @include ms-6();
+}
+
+.ShortRaceEntry__carClass {
+  grid-area: class;
+  background-color: $c-green;
+}
+
+.ShortRaceEntry__manufacturer {
+  grid-area: manufacturer;
+}
+
+.ShortRaceEntry__driverName {
+  grid-area: driver;
+}
