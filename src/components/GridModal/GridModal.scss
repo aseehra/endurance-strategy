@@ -1,0 +1,9 @@
+@import '../../styles/base.scss';
+
+.GridModal {
+  background-color: $c-blue;
+
+  @include enhanceForMedia(desktop) {
+    grid-column: span 2;
+  }
+}

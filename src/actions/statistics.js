@@ -30,7 +30,7 @@ const fetchStatisticsSuccess = data => ({
 export const fetchStatistics = entryId => (dispatch) => {
   dispatch(fetchStatisticsStart(entryId));
 
-  fetch(`${API_BASE_URL}/api/statistics/entry/${entryId}`)
+  return fetch(`${API_BASE_URL}/api/statistics/entry/${entryId}`)
     .then(normalizeErrors)
     .then(res => res.json())
     .then(data => dispatch(fetchStatisticsSuccess(data)))
@@ -57,7 +57,7 @@ const fetchStintsSuccess = ({ entryId, stints }) => ({
 export const fetchStints = entryId => (dispatch) => {
   dispatch(fetchStintsStart(entryId));
 
-  fetch(`${API_BASE_URL}/api/statistics/entry/${entryId}/stints`)
+  return fetch(`${API_BASE_URL}/api/statistics/entry/${entryId}/stints`)
     .then(normalizeErrors)
     .then(res => res.json())
     .then(data => dispatch(fetchStintsSuccess(data)))

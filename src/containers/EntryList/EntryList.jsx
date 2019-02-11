@@ -21,9 +21,13 @@ import {
 export class EntryList extends React.Component {
   componentDidMount() {
     const {
-      entries, fetchRaceEntries, raceId, urlQuery, setSearchFilter,
+      isLoading,
+      fetchRaceEntries,
+      raceId,
+      urlQuery,
+      setSearchFilter,
     } = this.props;
-    if (!entries) {
+    if (!isLoading) {
       fetchRaceEntries(raceId);
     }
 
@@ -100,7 +104,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     raceId,
-    entries: getRaceEntries(state)[raceId],
+    entries: getRaceEntries(state),
     isLoading: getEntriesLoading(state),
     entryFilter: getRaceEntriesFilter(state),
     urlQuery: search,

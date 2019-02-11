@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import './EntryTable.scss';
 import Card from '../Card';
 import TimeInterval from '../TimeInterval';
+import { statistics as statisticsType } from '../../types';
 
-export default function EntryTable(props) {
-  const { averageLapTime, fastestLap } = props;
+export default function EntryTable({ primaryStatistics, secondaryStatistics }) {
+  const { averageLapTime, fastestLap } = primaryStatistics;
   return (
     <section className="EntryTable">
       <Card>
@@ -20,12 +20,28 @@ export default function EntryTable(props) {
                 <TimeInterval time={averageLapTime} />
               </td>
             </tr>
+            {secondaryStatistics && (
+              <tr className="EntryTable__row fadeIn">
+                <td className="EntryTable__cell" />
+                <td className="EntryTable__cell EntryTable__cell--comparison">
+                  <TimeInterval time={secondaryStatistics.averageLapTime} />
+                </td>
+              </tr>
+            )}
             <tr className="EntryTable__row">
               <td className="EntryTable__cell EntryTable__cell--heading">Best lap</td>
               <td className="EntryTable__cell EntryTable__cell--data">
                 {fastestLap.lapNumber}
               </td>
             </tr>
+            {secondaryStatistics && (
+              <tr className="EntryTable__row fadeIn">
+                <td className="EntryTable__cell" />
+                <td className="EntryTable__cell EntryTable__cell--comparison">
+                  {secondaryStatistics.fastestLap.lapNumber}
+                </td>
+              </tr>
+            )}
             <tr className="EntryTable__row">
               <td className="EntryTable__cell EntryTable__cell--heading">
                 Best lap time
@@ -34,6 +50,14 @@ export default function EntryTable(props) {
                 <TimeInterval time={fastestLap.lapTime} />
               </td>
             </tr>
+            {secondaryStatistics && (
+              <tr className="EntryTable__row fadeIn">
+                <td className="EntryTable__cell" />
+                <td className="EntryTable__cell EntryTable__cell--comparison">
+                  <TimeInterval time={secondaryStatistics.fastestLap.lapTime} />
+                </td>
+              </tr>
+            )}
             <tr className="EntryTable__row">
               <td className="EntryTable__cell EntryTable__cell--heading">
                 Fastest driver
@@ -42,6 +66,14 @@ export default function EntryTable(props) {
                 {fastestLap.driverName}
               </td>
             </tr>
+            {secondaryStatistics && (
+              <tr className="EntryTable__row fadeIn">
+                <td className="EntryTable__cell" />
+                <td className="EntryTable__cell EntryTable__cell--comparison">
+                  {secondaryStatistics.fastestLap.driverName}
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </Card>
@@ -50,10 +82,10 @@ export default function EntryTable(props) {
 }
 
 EntryTable.propTypes = {
-  fastestLap: PropTypes.shape({
-    lapNumber: PropTypes.number,
-    lapTime: PropTypes.number,
-    driverName: PropTypes.string,
-  }).isRequired,
-  averageLapTime: PropTypes.number.isRequired,
+  primaryStatistics: statisticsType.isRequired,
+  secondaryStatistics: statisticsType,
+};
+
+EntryTable.defaultProps = {
+  secondaryStatistics: null,
 };
