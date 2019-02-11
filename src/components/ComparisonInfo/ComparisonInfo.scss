@@ -1,0 +1,38 @@
+@import '../../styles/base.scss';
+
+.ComparisonInfo {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  place-content: center;
+  place-items: center;
+  grid-column-gap: 2em;
+  grid-row-gap: 0.25em;
+  margin-top: 1em;
+
+  @include enhanceForMedia(desktop) {
+    grid-column: span 2;
+  }
+}
+
+.ComparisonInfo__entry {
+  grid-column: span 4;
+  color: $c-blue;
+
+  @include enhanceForMedia(desktop) {
+    grid-column: span 2;
+  }
+}
+
+.ComparisonInfo__clearButton {
+  grid-column: span 4;
+  background-color: $c-red;
+  color: $c-foreground;
+
+  @include enhanceForMedia(desktop) {
+    grid-column: span 1;
+  }
+}
+
+.ComparisonInfo__clearButtonIcon {
+  margin-right: 1ex;
+}

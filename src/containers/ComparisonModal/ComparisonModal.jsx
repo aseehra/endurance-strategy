@@ -19,7 +19,7 @@ export class ComparisonModal extends React.Component {
   }
 
   render() {
-    const { entries, entriesLoading } = this.props;
+    const { entries, entriesLoading, onComparison } = this.props;
 
     if (entriesLoading) {
       return null;
@@ -28,7 +28,11 @@ export class ComparisonModal extends React.Component {
     return (
       <GridModal>
         {Object.values(entries).map(entry => (
-          <ShortRaceEntry key={entry.id} entry={entry} />
+          <ShortRaceEntry
+            key={entry.id}
+            entry={entry}
+            onClick={() => onComparison(entry.id)}
+          />
         ))}
       </GridModal>
     );
@@ -48,6 +52,7 @@ ComparisonModal.propTypes = {
   ),
 
   fetchRaceEntries: PropTypes.func.isRequired,
+  onComparison: PropTypes.func.isRequired,
 };
 
 ComparisonModal.defaultProps = {

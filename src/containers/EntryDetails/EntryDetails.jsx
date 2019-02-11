@@ -3,23 +3,26 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import ComparisonButton from '../../components/ComparisonButton';
+import ComparisonInfo from '../../components/ComparisonInfo';
 import ComparisonModal from '../ComparisonModal';
 import DriverComparsionTable from '../../components/DriverComparisonTable';
 import EntryTable from '../../components/EntryTable';
 import PitStopTable from '../../components/PitStopTable';
 import StintData from '../StintData';
 import TwoColumnGrid from '../../components/TwoColumnGrid';
-import { getStatistics, getStatisticsError } from '../../reducers';
+import { getRaceEntries, getStatistics, getStatisticsError } from '../../reducers';
 import { fetchStatistics as fetchStatisticsAction } from '../../actions/statistics';
+import { entry as entryType } from '../../types';
 
 export class EntryDetails extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { showComparisonModal: false };
+    this.state = { showComparisonModal: false, comparisonId: null };
 
     this.onComparisonButtonClick = this.onComparisonButtonClick.bind(this);
+    this.onComparison = this.onComparison.bind(this);
+    this.clearComparison = this.clearComparison.bind(this);
   }
 
   componentDidMount() {
@@ -35,11 +38,28 @@ export class EntryDetails extends React.Component {
     this.setState({ showComparisonModal: !showComparisonModal });
   }
 
+  onComparison(entryId) {
+    const { fetchStatistics, statistics } = this.props;
+
+    Promise.resolve(statistics[entryId] || fetchStatistics(entryId)).then(() => {
+      this.setState({
+        showComparisonModal: false,
+        comparisonId: entryId,
+      });
+    });
+  }
+
+  clearComparison() {
+    this.setState({
+      comparisonId: null,
+    });
+  }
+
   render() {
     const {
-      entryId, error, raceId, statistics,
+      entryId, error, raceId, statistics, entries,
     } = this.props;
-    const { showComparisonModal } = this.state;
+    const { showComparisonModal, comparisonId } = this.state;
 
     if (error) {
       return <Redirect to="/404" />;
@@ -50,16 +70,24 @@ export class EntryDetails extends React.Component {
     }
 
     const primaryStatistics = statistics[entryId];
+    const secondaryStatistics = statistics[comparisonId];
 
     return (
       <div className="EntryDetails">
         <TwoColumnGrid>
-          <ComparisonButton
+          <ComparisonInfo
+            onCompareButtonClick={this.onComparisonButtonClick}
+            onClearButtonClick={this.clearComparison}
+            comparisonEntry={comparisonId && entries[comparisonId]}
             rotateIcon={showComparisonModal}
-            onClick={this.onComparisonButtonClick}
           />
-          {showComparisonModal && <ComparisonModal raceId={raceId} />}
-          <EntryTable {...primaryStatistics} />
+          {showComparisonModal && (
+            <ComparisonModal raceId={raceId} onComparison={this.onComparison} />
+          )}
+          <EntryTable
+            primaryStatistics={primaryStatistics}
+            secondaryStatistics={secondaryStatistics}
+          />
           <DriverComparsionTable {...primaryStatistics} />
           <PitStopTable {...primaryStatistics} />
           <StintData entryId={entryId} />
@@ -81,12 +109,14 @@ EntryDetails.propTypes = {
       driverName: PropTypes.string,
     }),
   }),
+  entries: PropTypes.objectOf(entryType),
   error: PropTypes.instanceOf(Error),
 };
 
 EntryDetails.defaultProps = {
   statistics: null,
   error: null,
+  entries: null,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -94,6 +124,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     raceId,
     entryId,
+    entries: getRaceEntries(state),
     statistics: getStatistics(state),
     error: getStatisticsError(state),
   };

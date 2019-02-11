@@ -1,13 +1,13 @@
 @import '../../styles/base.scss';
 
 .ComparisonButton {
-  justify-self: center;
-  margin-top: 1rem;
+  align-self: center;
   background-color: $c-blue;
   color: white;
+  grid-column: span 4;
 
   @include enhanceForMedia(desktop) {
-    grid-column: span 2;
+    grid-column: span 1;
   }
 }
 
